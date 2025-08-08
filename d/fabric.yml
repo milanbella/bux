@@ -1,0 +1,6 @@
+---
+authentication:
+    identities:
+    - /Users/Milan.Bella/.ssh/id_rsa
+user: root
+    

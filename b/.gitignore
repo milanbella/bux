@@ -1,0 +1,12 @@
+﻿bin/
+obj/
+*.user
+*.suo
+.vscode/
+.vs/
+
+.fake
+
+Migrations/
+
+*.swp

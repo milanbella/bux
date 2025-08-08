@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "es2020",
+    "moduleResolution": "bundler",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "sourceMap": true
+  },
+  "include": ["*.ts"]
+}
