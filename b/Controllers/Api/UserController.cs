@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ondrej.Controllers.Model.Api.UserController;
-using Ondrej.Sessionn;
+using Bux.Controllers.Model.Api.UserController;
+using Bux.Sessionn;
 
-namespace Ondrej.Controllers.Api
+namespace Bux.Controllers.Api
 {
     [Route("api/user")]
     public class UserController: Controller

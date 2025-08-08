@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
-using Ondrej.Dbo;
+using Bux.Dbo;
 using System;
 using System.Security.Cryptography;
 using System.Text;
 using Serilog;
 
-namespace Ondrej.Auth
+namespace Bux.Auth
 {
     public class ApiKeyService
     {

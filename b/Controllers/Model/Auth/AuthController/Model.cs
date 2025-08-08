@@ -1,4 +1,4 @@
-﻿namespace Ondrej.Controllers.Model.Auth.AuthController
+﻿namespace Bux.Controllers.Model.Auth.AuthController
 {
     public record BrowserRegisterRequest(string username, string email, string password, string passwordVerify);
     public record BrowserRegisterResponse(string error, string message);

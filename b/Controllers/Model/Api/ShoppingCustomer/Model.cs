@@ -1,4 +1,4 @@
-﻿namespace Ondrej.Controllers.Model.Api.ShoppingCustomer
+﻿namespace Bux.Controllers.Model.Api.ShoppingCustomer
 {
     public class Model
     {

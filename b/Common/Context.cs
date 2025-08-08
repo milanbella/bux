@@ -1,4 +1,4 @@
-﻿namespace Ondrej.Common
+﻿namespace Bux.Common
 {
     public class Context
     {

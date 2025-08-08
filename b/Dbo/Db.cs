@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ondrej.Dbo.Model;
+using Bux.Dbo.Model;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 
-namespace Ondrej.Dbo
+namespace Bux.Dbo
 {
     public class Db : DbContext, IDataProtectionKeyContext
     {
@@ -15,7 +15,7 @@ namespace Ondrej.Dbo
             this.Environment = environment;
         }
 
-        public DbSet<Ondrej.Dbo.Model.User> User => Set<Ondrej.Dbo.Model.User>();
+        public DbSet<Bux.Dbo.Model.User> User => Set<Bux.Dbo.Model.User>();
         public DbSet<JWT> JWT => Set<JWT>();
         public DbSet<Device> Device => Set<Device>();
         public DbSet<UserVerificationCode> UserVerificationCode => Set<UserVerificationCode>();
@@ -29,10 +29,10 @@ namespace Ondrej.Dbo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // User
-            modelBuilder.Entity<Ondrej.Dbo.Model.User>().HasKey(e => e.Id);
-            modelBuilder.Entity<Ondrej.Dbo.Model.User>().HasIndex(e => e.Name).IsUnique(true);
-            modelBuilder.Entity<Ondrej.Dbo.Model.User>().HasIndex(e => e.Email).IsUnique(true);
-            modelBuilder.Entity<Ondrej.Dbo.Model.User>().HasIndex(e => e.EmailVerificationCode).IsUnique(true);
+            modelBuilder.Entity<Bux.Dbo.Model.User>().HasKey(e => e.Id);
+            modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.Name).IsUnique(true);
+            modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.Email).IsUnique(true);
+            modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.EmailVerificationCode).IsUnique(true);
 
             // JWT
             modelBuilder.Entity<JWT>().HasKey(e => e.Id);
@@ -64,7 +64,7 @@ namespace Ondrej.Dbo
             modelBuilder.Entity<ApiKey>().HasKey(e => e.Id);
             modelBuilder.Entity<ApiKey>().HasIndex(e => e.KeyValue).IsUnique(true);
 
-            Ondrej.Seed.SeedAll.Seed(modelBuilder, Configuration, Environment);
+            Bux.Seed.SeedAll.Seed(modelBuilder, Configuration, Environment);
         }
     }
 }

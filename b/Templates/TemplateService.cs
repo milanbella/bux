@@ -1,9 +1,9 @@
 ﻿using Scriban;
-using Ondrej.Dbo;
+using Bux.Dbo;
 using Serilog;
-using Ondrej.Lang;
+using Bux.Lang;
 
-namespace Ondrej.Templates
+namespace Bux.Templates
 {
     public class TemplateService
     {

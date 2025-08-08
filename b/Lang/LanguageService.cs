@@ -1,4 +1,4 @@
-﻿namespace Ondrej.Lang
+﻿namespace Bux.Lang
 {
     public enum Language
     {

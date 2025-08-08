@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Ondrej.Seed
+namespace Bux.Seed
 {
     public class SeedAll
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ondrej.Auth;
+using Bux.Auth;
 
-namespace Ondrej.Controllers
+namespace Bux.Controllers
 {
     [Route("")]
     public class RootController : Controller

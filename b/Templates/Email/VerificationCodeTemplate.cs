@@ -1,9 +1,9 @@
 ﻿using Scriban;
 using Scriban.Runtime;
-using Ondrej.Templates;
-using Ondrej.Lang;
+using Bux.Templates;
+using Bux.Lang;
 
-namespace Ondrej.Templates.Email
+namespace Bux.Templates.Email
 {
     public class VerificationCodeTemplate
     {

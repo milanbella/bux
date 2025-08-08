@@ -1,4 +1,4 @@
-namespace Ondrej.Dbo.Model
+namespace Bux.Dbo.Model
 {
     public class SessionUser
     {

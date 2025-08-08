@@ -1,5 +1,5 @@
 ﻿#pragma warning disable CS8618, CS8632
-namespace Ondrej.Dbo.Model
+namespace Bux.Dbo.Model
 {
     public class UserVerificationCode
     {

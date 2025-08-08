@@ -1,4 +1,4 @@
-namespace Ondrej
+namespace Bux
 {
     public class WeatherForecast
     {

@@ -3,10 +3,10 @@
 using System.Security.Cryptography;
 using Jose;
 using Serilog;
-using Ondrej.Dbo;
+using Bux.Dbo;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ondrej.Auth
+namespace Bux.Auth
 {
     /*
     public enum UserType
@@ -53,7 +53,7 @@ namespace Ondrej.Auth
                 throw new Exception("missing configuration value: pkcs12_key_store_file_path");
             }
             string keyStorePasswordEncrypted = Configuration.GetValue<string>("key_store_password");
-            this.keyStorePassword = Ondrej.Encryption.EncryptionHelper.Decrypt(keyStorePasswordEncrypted);
+            this.keyStorePassword = Bux.Encryption.EncryptionHelper.Decrypt(keyStorePasswordEncrypted);
 
             this.dbContextOptions = dbContextOptions;
 
@@ -115,7 +115,7 @@ namespace Ondrej.Auth
 
             if (userType == Token.UserType.RegisteredUser)
             {
-                Ondrej.Dbo.Model.JWT jwt = new Ondrej.Dbo.Model.JWT
+                Bux.Dbo.Model.JWT jwt = new Bux.Dbo.Model.JWT
                 {
                     Token = jwtStr,
                     UserId = userId,
@@ -128,7 +128,7 @@ namespace Ondrej.Auth
             }
             else if (userType == Token.UserType.GuestUser)
             {
-                Ondrej.Dbo.Model.JWT jwt = new Ondrej.Dbo.Model.JWT
+                Bux.Dbo.Model.JWT jwt = new Bux.Dbo.Model.JWT
                 {
                     Token = jwtStr,
                     UserId = userId,

@@ -1,7 +1,7 @@
 ﻿#pragma warning disable 8618
 using System;
 
-namespace Ondrej.Auth.Token
+namespace Bux.Auth.Token
 { 
     public enum UserType
     {

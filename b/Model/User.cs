@@ -1,4 +1,4 @@
-﻿namespace Ondrej.Model
+﻿namespace Bux.Model
 {
     public class User
     {

@@ -1,8 +1,8 @@
-﻿using Ondrej.Dbo;
+﻿using Bux.Dbo;
 using System.Text;
 using Serilog;
 
-namespace Ondrej.VerificationCode
+namespace Bux.VerificationCode
 {
     public class UserVerificationCodeService
     {

@@ -1,15 +1,15 @@
 ﻿#pragma warning disable 8600, 8602, 8604
 
 using Serilog;
-using Ondrej.Lang;
-using Ondrej.Templates;
+using Bux.Lang;
+using Bux.Templates;
 using MailKit.Net.Smtp;
 using MimeKit;
 using MimeKit.Text;
 using MailKit;
-using Ondrej.Templates.Email;
+using Bux.Templates.Email;
 
-namespace Ondrej.Email
+namespace Bux.Email
 {
     public class EmailService
     {
@@ -64,7 +64,7 @@ namespace Ondrej.Email
                 throw new Exception("missing configuration value: email_smtp_password");
             }
             emailSmtpPassword = Configuration["email_smtp_password"];
-            emailSmtpPassword = Ondrej.Encryption.EncryptionHelper.Decrypt(emailSmtpPassword);
+            emailSmtpPassword = Bux.Encryption.EncryptionHelper.Decrypt(emailSmtpPassword);
 
             if (Configuration["domain_name"] == null)
             {

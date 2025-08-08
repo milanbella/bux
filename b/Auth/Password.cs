@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.CompilerServices;
 
-namespace Ondrej.Auth
+namespace Bux.Auth
 {
     public class EncodedPassword
     {

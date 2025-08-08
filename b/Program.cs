@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
-using Ondrej.Dbo;
+using Bux.Dbo;
 using MySqlConnector;
 using Serilog;
-using Ondrej.Middleware;
+using Bux.Middleware;
 
 if (false)
 {
-    Ondrej.Tests.Test.TestAll();
+    Bux.Tests.Test.TestAll();
     Console.WriteLine("Press any key to exit program");
     Console.ReadKey();
     Environment.Exit(0);
@@ -55,13 +55,13 @@ var dbServerVersion = new MariaDbServerVersion(new Version(dbMajorVersion, dbMin
 
 var dbConnectionString = builder.Configuration.GetValue<string>("db_connection_string");
 dbConnectionString += $";user={builder.Configuration.GetValue<string>("db_user")}";
-dbConnectionString += $";password={Ondrej.Encryption.EncryptionHelper.Decrypt(builder.Configuration.GetValue<string>("db_password"))}";
+dbConnectionString += $";password={Bux.Encryption.EncryptionHelper.Decrypt(builder.Configuration.GetValue<string>("db_password"))}";
 
 if (builder.Environment.EnvironmentName == "Test")
 {
     var section = builder.Configuration.GetSection("Kestrel:Certificates:Default");
     var encryptedPassword = section.GetValue<string>("Password");
-    var decryptedPassword = Ondrej.Encryption.EncryptionHelper.Decrypt(encryptedPassword);
+    var decryptedPassword = Bux.Encryption.EncryptionHelper.Decrypt(encryptedPassword);
     builder.Configuration["Kestrel:Certificates:Default:Password"] = decryptedPassword;
 }
 
@@ -107,48 +107,48 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDataProtection()
     .PersistKeysToDbContext<Db>();
 
-builder.Services.AddScoped<Ondrej.Templates.TemplateService>(provider =>
+builder.Services.AddScoped<Bux.Templates.TemplateService>(provider =>
 {
-    Ondrej.Dbo.Db db = provider.GetService<Ondrej.Dbo.Db>();
-    Ondrej.Lang.LanguageService languageService = provider.GetService<Ondrej.Lang.LanguageService>();
-    return new Ondrej.Templates.TemplateService(builder.Configuration, db, languageService);
+    Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
+    Bux.Lang.LanguageService languageService = provider.GetService<Bux.Lang.LanguageService>();
+    return new Bux.Templates.TemplateService(builder.Configuration, db, languageService);
 });
 
-builder.Services.AddScoped<Ondrej.Lang.LanguageService>(provider =>
+builder.Services.AddScoped<Bux.Lang.LanguageService>(provider =>
 {
-    return new Ondrej.Lang.LanguageService();
+    return new Bux.Lang.LanguageService();
 });
 
-builder.Services.AddScoped<Ondrej.Email.EmailService>(provider =>
+builder.Services.AddScoped<Bux.Email.EmailService>(provider =>
 {
-    Ondrej.Lang.LanguageService languageService = provider.GetService<Ondrej.Lang.LanguageService>();
-    Ondrej.Templates.TemplateService templateService = provider.GetService<Ondrej.Templates.TemplateService>();
-    return new Ondrej.Email.EmailService(builder.Configuration, languageService, templateService);
+    Bux.Lang.LanguageService languageService = provider.GetService<Bux.Lang.LanguageService>();
+    Bux.Templates.TemplateService templateService = provider.GetService<Bux.Templates.TemplateService>();
+    return new Bux.Email.EmailService(builder.Configuration, languageService, templateService);
 });
 
-builder.Services.AddScoped<Ondrej.VerificationCode.UserVerificationCodeService>(provider =>
+builder.Services.AddScoped<Bux.VerificationCode.UserVerificationCodeService>(provider =>
 {
-    Ondrej.Dbo.Db db = provider.GetService<Ondrej.Dbo.Db>();
-    return new Ondrej.VerificationCode.UserVerificationCodeService(db);
+    Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
+    return new Bux.VerificationCode.UserVerificationCodeService(db);
 });
 
-builder.Services.AddScoped<Ondrej.Sessionn.SessionService>(provider =>
+builder.Services.AddScoped<Bux.Sessionn.SessionService>(provider =>
 {
-    Ondrej.Dbo.Db db = provider.GetService<Ondrej.Dbo.Db>();
+    Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
     HttpContext context = provider.GetRequiredService<IHttpContextAccessor>().HttpContext;
-    return new Ondrej.Sessionn.SessionService(db, context);
+    return new Bux.Sessionn.SessionService(db, context);
 });
 
-builder.Services.AddSingleton<Ondrej.Auth.TokenService>(provider =>
+builder.Services.AddSingleton<Bux.Auth.TokenService>(provider =>
 {
     var dbContextOptions = createDbContextOptions();
-    return new Ondrej.Auth.TokenService(builder.Configuration, dbContextOptions);
+    return new Bux.Auth.TokenService(builder.Configuration, dbContextOptions);
 });
 
-builder.Services.AddScoped<Ondrej.Auth.ApiKeyService>(provider =>
+builder.Services.AddScoped<Bux.Auth.ApiKeyService>(provider =>
 {
     MySqlDataSource dataSource = provider.GetService<MySqlDataSource>();
-    return new Ondrej.Auth.ApiKeyService(dataSource);
+    return new Bux.Auth.ApiKeyService(dataSource);
 });
 
 

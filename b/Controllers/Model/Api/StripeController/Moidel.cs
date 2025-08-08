@@ -1,4 +1,4 @@
-﻿namespace Ondrej.Controllers.Model.Api.StripeController
+﻿namespace Bux.Controllers.Model.Api.StripeController
 {
     public record NewCustomerResponse(int id, string stripeCustomerId); 
 

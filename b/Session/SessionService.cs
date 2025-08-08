@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
-namespace Ondrej.Sessionn // use nn to avoid conflicts
+namespace Bux.Sessionn // use nn to avoid conflicts
 {
     public class SessionService
     {
@@ -20,9 +20,9 @@ namespace Ondrej.Sessionn // use nn to avoid conflicts
         {
             const string METHOD_NAME = "GetSessionId()";
 
-            if (context.Items.ContainsKey(Ondrej.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID))
+            if (context.Items.ContainsKey(Bux.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID))
             {
-                if (context.Items[Ondrej.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID] is long sessionId)
+                if (context.Items[Bux.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID] is long sessionId)
                 {
                     return sessionId;
                 }
@@ -38,7 +38,7 @@ namespace Ondrej.Sessionn // use nn to avoid conflicts
             }
         }
 
-        public async Task<Ondrej.Dbo.Model.User?> GetLoggedInUser()
+        public async Task<Bux.Dbo.Model.User?> GetLoggedInUser()
         {
             try
             {

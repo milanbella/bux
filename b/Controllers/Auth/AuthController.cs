@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Ondrej.Auth;
-using Ondrej.Controllers.Model.Auth.AuthController;
-using Ondrej.Dbo;
-using Ondrej.Dbo.Model;
-using Ondrej.Sessionn;
+using Bux.Auth;
+using Bux.Controllers.Model.Auth.AuthController;
+using Bux.Dbo;
+using Bux.Dbo.Model;
+using Bux.Sessionn;
 using Serilog;
-using User = Ondrej.Dbo.Model.User;
+using User = Bux.Dbo.Model.User;
 
-namespace Ondrej.Controllers.Auth
+namespace Bux.Controllers.Auth
 {
     [Route("auth")]
     public class AuthController : Controller
@@ -141,6 +141,22 @@ namespace Ondrej.Controllers.Auth
                     db.SessionUser.RemoveRange(existingSessionUsers);
                     await db.SaveChangesAsync();
                 }
+
+                // Create new user
+                user = new User
+                {
+                    Name = request.username,
+                    Email = request.email,
+                    FirstName = request.username,
+                    LastName = request.username,
+                    PasswordSalt = Password.getEncodedPassword(request.password).PasswordSalt,
+                    PasswordHash = Password.getEncodedPassword(request.password).PasswordHash,
+                    IsEmailVerified = false, // Set to false by default
+                    Country = "Unknown", // Default value
+                    Language = "en" // Default value
+                };
+                db.User.Add(user);
+                await db.SaveChangesAsync();
 
                 // Add entry in SessionUser table
                 var sessionUser = new SessionUser
@@ -368,7 +384,7 @@ namespace Ondrej.Controllers.Auth
                     device.Id,
                     device.DeviceId,
                     100L * 365 * 24 * 3600, // 100 years validity
-                    Ondrej.Auth.Token.UserType.RegisteredUser
+                    Bux.Auth.Token.UserType.RegisteredUser
                 );
 
                 await transaction.CommitAsync();
@@ -554,7 +570,7 @@ namespace Ondrej.Controllers.Auth
                     device.Id,
                     device.DeviceId,
                     100L * 365 * 24 * 3600, // 100 years validity
-                    Ondrej.Auth.Token.UserType.RegisteredUser
+                    Bux.Auth.Token.UserType.RegisteredUser
                 );
 
                 await transaction.CommitAsync();

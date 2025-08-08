@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Ondrej.Encryption
+namespace Bux.Encryption
 {
     public class EncryptionHelper
     {

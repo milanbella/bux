@@ -1,10 +1,10 @@
 ﻿#pragma warning disable 8600, 8602 
 
-using Ondrej.Auth;
-using Ondrej.Dbo.Model;
+using Bux.Auth;
+using Bux.Dbo.Model;
 using Serilog;
 
-namespace Ondrej.Middleware
+namespace Bux.Middleware
 {
     public class AuthMiddleware
     {

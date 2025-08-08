@@ -1,4 +1,4 @@
-﻿namespace Ondrej.Dbo.Model
+﻿namespace Bux.Dbo.Model
 {
     [System.Serializable]
     public class Session

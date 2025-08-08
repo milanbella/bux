@@ -4,9 +4,9 @@ using Serilog;
 using Microsoft.AspNetCore.DataProtection;
 using MySqlConnector;
 using Scriban.Parsing;
-using Ondrej.Auth;
+using Bux.Auth;
 
-namespace Ondrej.Middleware
+namespace Bux.Middleware
 {
     public class SessionMiddleware
     {
@@ -51,7 +51,7 @@ namespace Ondrej.Middleware
                     return;
                 }
 
-                Ondrej.Auth.Token.TokenClaims claims = tokenService.GetClaimsFormJWT(jwt);
+                Bux.Auth.Token.TokenClaims claims = tokenService.GetClaimsFormJWT(jwt);
 
                 if (claims == null)
                 {
@@ -67,13 +67,13 @@ namespace Ondrej.Middleware
                     return;
                 }
 
-                context.Items.Add(Ondrej.Common.Context.HTTP_CONTEXT_KEY_TOKEN_CLAIMS, claims);
+                context.Items.Add(Bux.Common.Context.HTTP_CONTEXT_KEY_TOKEN_CLAIMS, claims);
 
                 long? sessionId = await GetSessionIdFromDevice(dataSource, claims.DeviceId);
                 if (sessionId != null)
                 {
                     await UpdateSession(dataSource, sessionId.Value);
-                    context.Items[Ondrej.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID] = sessionId.Value;
+                    context.Items[Bux.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID] = sessionId.Value;
                 }
 
                 await _next(context);
@@ -99,7 +99,7 @@ namespace Ondrej.Middleware
                     await context.Response.WriteAsync("Internal Server Error");
                     return;
                 }
-                context.Items[Ondrej.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID] = sessionId.Value;
+                context.Items[Bux.Common.Context.HTTP_CONTEXT_KEY_SESSION_ID] = sessionId.Value;
 
                 // Call the next middleware in the pipeline
                 await _next(context);
