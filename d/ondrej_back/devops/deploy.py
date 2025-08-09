@@ -2,16 +2,16 @@
 
 def deploy_ondrej_back_to_test(c, branch: str):
     #git_origin = "git@212.24.97.13:repos/gaos.git"
-    git_origin = "git@github.com:milanbella/ondrej_back.git"
+    git_origin = "git@github.com:milanbella/bux.git"
     cmd = f'''
     set -e
     echo "INFO: getting newest source code"
-    if [ ! -d "/opt/ondrej_back" ]; then
-        echo "INFO: cloning {git_origin} to /opt/ondrej_back"
-        git clone {git_origin} /opt/ondrej_back
+    if [ ! -d "/opt/bux" ]; then
+        echo "INFO: cloning {git_origin} to /opt/bux"
+        git clone {git_origin} /opt/bux
     fi
-    echo "INFO: git pull ondrej_back"
-    cd /opt/ondrej_back
+    echo "INFO: git pull bux"
+    cd /opt/bux
     git reset --hard
     git checkout {branch}
     git pull
@@ -20,7 +20,7 @@ def deploy_ondrej_back_to_test(c, branch: str):
 
     cmd = f'''
     set -e
-    cd /opt/ondrej_back
+    cd /opt/bux/b
     export ASPNETCORE_ENVIRONMENT=Test
     export PATH=$PATH:/root/.dotnet/tools
     export AISHOPS_PASSWORD_FILE=/opt/gao_password.txt
@@ -33,7 +33,7 @@ def deploy_ondrej_back_to_test(c, branch: str):
 
     echo "INFO: publishing ondrej_back"
     dotnet publish --configuration Release
-    chown -R ondrej:ondrej /opt/ondrej_back/bin/Release/net9.0/publish
+    chown -R ondrej:ondrej /opt/bux/b/bin/Release/net9.0/publish
 
     echo "INFO: droping database"
     mariadb -e 'drop database if exists ondrej; create database ondrej;'
