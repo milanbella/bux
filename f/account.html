@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <link rel="stylesheet" href="css/header_footer.css">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/account.css">
 </head>
 
 <body>
@@ -30,10 +30,19 @@
 
     <main>
 
-        <div class="main-content">
-            <img src="img/banner.png"></img>
-        </div>
+        <form id="register-form" class="container-register-form">
+            <h4 class="register-form-header">Provide us your roblox usernname to redeem earned bux!</h4>
+            <div class="register-form-row">
+                <div>
+                    <label for="username">roblox username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <button type="submit"> Submit </button>
+                <div id="message"></div>
+            </div>
+        </form>
 
+        <script type="module" src="register.js"></script>
     </main>
 
     <footer>

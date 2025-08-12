@@ -1,8 +1,5 @@
 export interface BrowserRegisterRequest {
     username: string;
-    email: string;
-    password: string;
-    passwordVerify: string;
 }
 
 export interface BrowserRegisterResponse {

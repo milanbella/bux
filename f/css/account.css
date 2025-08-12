@@ -20,6 +20,22 @@
 	--msg-font: 16px/1.4 sans-serif;
 }
 
+.container-register-form {
+    display: flex;
+	flex-direction: column;
+    align-items: center;
+	margin-top: 40px;
+}
+
+.register-form-row {
+    width: 400px;
+}
+
+.register-form-header {
+    display: flex;
+	justify-content: center;
+}
+
 /* 2. Base “message” class */
 .message {
 	font: var(--msg-font);

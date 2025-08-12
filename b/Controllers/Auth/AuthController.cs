@@ -69,57 +69,10 @@ namespace Bux.Controllers.Auth
                     )));
                 }
 
-                if (string.IsNullOrEmpty(request.email))
-                {
-                    return await Task.FromResult(StatusCode(400, new BrowserLoginResponse(
-                        error: "missing email",
-                        message: "missing email"
-                    )));
-                }
-
-                if (string.IsNullOrEmpty(request.password))
-                {
-                    return await Task.FromResult(StatusCode(400, new BrowserLoginResponse(
-                        error: "missing password",
-                        message: "missing password"
-                    )));
-                }
-
-                if (string.IsNullOrEmpty(request.passwordVerify))
-                {
-                    return await Task.FromResult(StatusCode(400, new BrowserLoginResponse(
-                        error: "missing passwordVerify",
-                        message: "missing passwordVerify"
-                    )));
-                }
-
-                if (request.password != request.passwordVerify)
-                {
-                    return await Task.FromResult(StatusCode(400, new BrowserLoginResponse(
-                        error: "passwords do not match",
-                        message: "passwords do not match"
-                    )));
-                }
 
                 // Find user by username
                 var user = await db.User.FirstOrDefaultAsync(u => u.Name == request.username);
-                if (user != null)
-                {
-                    return await Task.FromResult(StatusCode(400, new BrowserLoginResponse(
-                        error: "user_exists",
-                        message: "such a user already exists"
-                    )));
-                }
 
-                // Find user by email
-                user = await db.User.FirstOrDefaultAsync(u => u.Email == request.email);
-                if (user != null)
-                {
-                    return await Task.FromResult(StatusCode(400, new BrowserLoginResponse(
-                        error: "email_exists",
-                        message: "such a user already exists"
-                    )));
-                }
 
 
                 // Get session ID using SessionService
@@ -143,19 +96,15 @@ namespace Bux.Controllers.Auth
                 }
 
                 // Create new user
-                user = new User
+                if (user == null)
                 {
-                    Name = request.username,
-                    Email = request.email,
-                    FirstName = request.username,
-                    LastName = request.username,
-                    PasswordSalt = Password.getEncodedPassword(request.password).PasswordSalt,
-                    PasswordHash = Password.getEncodedPassword(request.password).PasswordHash,
-                    IsEmailVerified = false, // Set to false by default
-                    Country = "Unknown", // Default value
-                    Language = "en" // Default value
-                };
-                db.User.Add(user);
+                    user = new User
+                    {
+                        Name = request.username,
+                        Email = request.username,
+                    };
+                    db.User.Add(user);
+                }
                 await db.SaveChangesAsync();
 
                 // Add entry in SessionUser table
