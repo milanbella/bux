@@ -15,9 +15,18 @@ footer {
 }
 
 header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  overflow: auto;
+}
+
+header nav .left {
+  float: left;
+  margin-right: 15px;
+}
+
+header nav .right,
+header nav .username {
+  float: right;
+  margin-left: 15px;
 }
 
 footer p {
