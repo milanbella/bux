@@ -17,8 +17,7 @@ function make_f_dist() {
 
         scripts/php.sh
         rm -rf php
-        rm index.php
-        rm account.php
+        rm *.php
 
     cd ..
 }
