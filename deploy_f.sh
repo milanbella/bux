@@ -14,6 +14,12 @@ function make_f_dist() {
         rm -f README.md
         find . -type f -name '*.ts' -exec rm -v {} +
         find . -type f -name '*.swp' -exec rm -v {} +
+
+        scripts/php.sh
+        rm -rf php
+        rm index.php
+        rm account.php
+
     cd ..
 }
 
