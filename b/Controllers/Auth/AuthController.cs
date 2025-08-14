@@ -119,7 +119,8 @@ namespace Bux.Controllers.Auth
                 await db.SaveChangesAsync();
 
                 await transaction.CommitAsync();
-                return await Task.FromResult(Ok(new BrowserLoginResponse(
+                return await Task.FromResult(Ok(new BrowserRegisterResponse(
+                    username: user.Name,
                     error: "",
                     message: "Login successful."
                 )));

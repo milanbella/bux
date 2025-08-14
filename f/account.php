@@ -26,11 +26,10 @@
                     <input type="text" id="username" name="username" required>
                 </div>
                 <button type="submit"> Submit </button>
-                <div id="message"></div>
             </div>
         </form>
+		<div id="message"></div>
 
-        <script type="module" src="register.js"></script>
     </main>
 
     <footer>
@@ -38,6 +37,7 @@
 	include 'php/footer.php'
 ?>
     </footer>
+	<script type="module" src="register.js"></script>
 </body>
 
 </html>

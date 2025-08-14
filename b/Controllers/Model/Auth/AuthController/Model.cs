@@ -1,7 +1,7 @@
 ﻿namespace Bux.Controllers.Model.Auth.AuthController
 {
     public record BrowserRegisterRequest(string username);
-    public record BrowserRegisterResponse(string error, string message);
+    public record BrowserRegisterResponse(string username, string error, string message);
 
     public record BrowserLoginRequest(string username, string password);
     public record BrowserLoginResponse(string error, string message);
