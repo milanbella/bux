@@ -23,7 +23,8 @@ namespace Bux.Dbo
         public DbSet<Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey> DataProtectionKeys => Set<Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey>();
         public DbSet<SessionUser> SessionUser => Set<SessionUser>();
 
-        public DbSet<ApiKey> ApiKey => Set<ApiKey>();
+        public DbSet<BuxEarned> Bux => Set<BuxEarned>();
+        public DbSet<ClickGame> ClickGame => Set<ClickGame>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -60,11 +61,14 @@ namespace Bux.Dbo
             modelBuilder.Entity<SessionUser>().HasOne(e => e.Session).WithMany().HasForeignKey(e => e.SessionId);
 
 
-            // ApiKey
-            modelBuilder.Entity<ApiKey>().HasKey(e => e.Id);
-            modelBuilder.Entity<ApiKey>().HasIndex(e => e.KeyValue).IsUnique(true);
+            // BuxEarned
+            modelBuilder.Entity<BuxEarned>().HasKey(e => e.Id);
+            modelBuilder.Entity<BuxEarned>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
-            Bux.Seed.SeedAll.Seed(modelBuilder, Configuration, Environment);
+            // ClickGame
+            modelBuilder.Entity<ClickGame>().HasKey(e => e.Id);
+            modelBuilder.Entity<ClickGame>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+
         }
     }
 }

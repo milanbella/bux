@@ -12,7 +12,7 @@ namespace Bux.Middleware
     {
         public static string CLASS_NAME = typeof(SessionMiddleware).Name;
 
-        public static string SESSION_COOKIE_NAME = "vmgaming";
+        public static string SESSION_COOKIE_NAME = "bux";
 
         private readonly RequestDelegate _next;
         private readonly IDataProtector _dataProtector;

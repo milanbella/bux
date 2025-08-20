@@ -16,7 +16,7 @@
     </header>
 
     <main>
-		<p> Offers .... to do </p>
+		<p> <a href="click_game.html"> click game </a> </p>
     </main>
 
     <footer>
