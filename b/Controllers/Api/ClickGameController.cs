@@ -61,7 +61,7 @@ namespace Bux.Controllers.Api
                 if (clickGame.Clicks  == CLICKS_TO_EARN_BUX)
                 {
                     // read BuxEarned for the user
-                    var buxEarned = await db.Bux.FirstOrDefaultAsync(b => b.UserId == userId);
+                    var buxEarned = await db.BuxEarned.FirstOrDefaultAsync(b => b.UserId == userId);
                     if (buxEarned == null)
                     {
                         // if no BuxEarned exists, create a new one
@@ -70,13 +70,13 @@ namespace Bux.Controllers.Api
                             UserId = userId,
                             Amount = 10
                         };
-                        db.Bux.Add(buxEarned);
+                        db.BuxEarned.Add(buxEarned);
                     }
                     else
                     {
                         // if BuxEarned exists, increment the amount
                         buxEarned.Amount += 1;
-                        db.Bux.Update(buxEarned);
+                        db.BuxEarned.Update(buxEarned);
                     }
 
                     buxAmount = 1;

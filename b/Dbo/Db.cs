@@ -23,7 +23,7 @@ namespace Bux.Dbo
         public DbSet<Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey> DataProtectionKeys => Set<Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey>();
         public DbSet<SessionUser> SessionUser => Set<SessionUser>();
 
-        public DbSet<BuxEarned> Bux => Set<BuxEarned>();
+        public DbSet<BuxEarned> BuxEarned => Set<BuxEarned>();
         public DbSet<ClickGame> ClickGame => Set<ClickGame>();
 
 
