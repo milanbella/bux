@@ -7,6 +7,7 @@
 ?>
 
     <link rel="stylesheet" href="css/account.css">
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
 
 <body>
@@ -27,8 +28,17 @@
                 </div>
                 <button type="submit"> Submit </button>
             </div>
+			<div class="h-captcha" data-sitekey="9c16973a-002e-43fa-9dd0-fd4899b64e68"></div>
         </form>
 		<div id="message"></div>
+
+	<form action="" method="POST">
+      <input type="text" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
+      <div class="h-captcha" data-sitekey="9c16973a-002e-43fa-9dd0-fd4899b64e68"></div>
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
 
     </main>
 
@@ -37,7 +47,7 @@
 	include 'php/footer.php'
 ?>
     </footer>
-	<script type="module" src="register.js"></script>
+	<script type="module" src="account.js"></script>
 </body>
 
 </html>
