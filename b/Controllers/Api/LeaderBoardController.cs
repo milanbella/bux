@@ -23,7 +23,7 @@ namespace Bux.Controllers.Api
 
         [HttpGet("lines")]
         public async Task<ActionResult<GetLeaderBoardResponse>> GetLeaderboard(
-            Db db,
+            [FromServices] Db db,
             [FromServices] SessionService sessionService,
             [FromQuery, Range(1, 1000)] int? limit)
         {
