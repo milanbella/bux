@@ -1,4 +1,5 @@
 import { callGetData, callPostData, Response } from './api.js';
+import { updateTotalBux } from './header_footer.js';
 
 interface ClickResponse {
     buxAmount: number;
@@ -57,7 +58,6 @@ function showResultContainer(buxEarned: number) {
     }
 }
 
-
 hideResultContainer();
 //showResultContainer(5); //@@@@@@@@@@@@@@@@@@@@@@
 
@@ -80,12 +80,13 @@ clickButton.addEventListener("click", async () => {
 		const res = await callClick();
 		console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@ cp 200: callClick');
 		console.dir(res.response); // log the response from backend
-		if (res.response) {
-			showCountButton(res.response.clicksCount);
+                if (res.response) {
+                        showCountButton(res.response.clicksCount);
             if (res.response.buxAmount > 0) {
                 showResultContainer(res.response.buxAmount)
+                updateTotalBux();
             }
-		}
+                }
 			
 	} catch (err) {
 		console.error("Error calling click-game API:", err);

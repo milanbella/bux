@@ -1,4 +1,5 @@
 import {callGetData, callPostData, Response} from './api.js';
+import { updateTotalBux } from './header_footer.js';
 
 
 interface ClickRequest {
@@ -113,6 +114,9 @@ guessButton.addEventListener("click", async () => {
         if (res.response) {
             showGuessButton();
             showResultContainer(res.response.isMatch, res.response.buxAmount)
+            if (res.response.buxAmount > 0) {
+                updateTotalBux();
+            }
         } else {
             throw new Error('mo response');
         }
