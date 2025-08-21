@@ -4,6 +4,7 @@ using Bux.Dbo;
 using MySqlConnector;
 using Serilog;
 using Bux.Middleware;
+using Microsoft.AspNetCore.HttpOverrides;
 
 if (false)
 {
@@ -86,6 +87,18 @@ DbContextOptions<Db>  createDbContextOptions()
 builder.Services.AddDbContext<Db>(ConfigureDbContextOptions);
 builder.Services.AddMySqlDataSource(dbConnectionString);
 
+// this registers IHttpClientFactory with a default 3s timeout
+//builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("my_client", c =>
+{
+    c.Timeout = TimeSpan.FromSeconds(5);
+})
+.ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler
+{
+    ConnectTimeout = TimeSpan.FromSeconds(10)
+});
+
+
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -164,6 +177,14 @@ builder.Services.AddControllers();
 
 
 var app = builder.Build();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+    //ForwardLimit = 1, // one proxy: Nginx
+    // Trust only your proxy:
+    //KnownProxies = { IPAddress.Parse("127.0.0.1") }
+});
 
 app.UseMiddleware<SessionMiddleware>();
 app.UseMiddleware<AuthMiddleware>();

@@ -14,11 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const username = (form.username as HTMLInputElement).value.trim();
+        const captcha = form['h-captcha-response'].value || '';
+        if (captcha === '') {
+            console.warn("empty cpatcha");
+            return;
+        }
 
         clearMessage();
 
         let request: BrowserRegisterRequest = {
             username: username,
+            captcha: captcha,
         };
         const result = await callBrowserRegister(request);
         console.dir(result); //@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -1,5 +1,6 @@
 export interface BrowserRegisterRequest {
     username: string;
+    captcha: string;
 }
 
 export interface BrowserRegisterResponse {

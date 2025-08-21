@@ -7,9 +7,11 @@ using Bux.Dbo.Model;
 using Bux.Sessionn;
 using Serilog;
 using User = Bux.Dbo.Model.User;
+using System.Text.Json;
 
 namespace Bux.Controllers.Auth
 {
+
     [Route("auth")]
     public class AuthController : Controller
     {
@@ -22,11 +24,73 @@ namespace Bux.Controllers.Auth
             this.sessionService = sessionService;
         }
 
-        public async Task<IActionResult> Index()
+        public record HCaptchaVerifyResponse(
+            bool success,
+            string? challenge_ts,
+            string? hostname,
+            bool? credit,
+            string[]? error_codes
+        );
+
+        private async Task<bool> VerifyHcaptcha(IHttpClientFactory httpClientFactory, IConfiguration configuration, string captcha)
         {
-            // Simulate async operation if needed, e.g., await Task.CompletedTask;
-            return await Task.FromResult(View());
+            const string METHOD_NAME = "VerifyHcaptcha()";
+
+            string hcaptchaSecret = configuration["hcapctacha_client_secret"];
+            if (string.IsNullOrEmpty(hcaptchaSecret))
+            {
+                Log.Error($"{CLASS_NAME}:{METHOD_NAME} - hcapctacha_client_secret is not configured.");
+                throw new Exception("hcapctacha_client_secret is not configured.");
+            }
+
+            var client = httpClientFactory.CreateClient("my_client");
+
+            var remoteIp = HttpContext?.Connection?.RemoteIpAddress?.ToString();
+            var postData = new Dictionary<string, string>
+            {
+                ["secret"] = hcaptchaSecret,
+                ["response"] = captcha
+            };
+            if (!string.IsNullOrWhiteSpace(remoteIp))
+            {
+                postData["remoteip"] = remoteIp;
+            }
+
+            using var httpReq = new HttpRequestMessage(HttpMethod.Post, "https://api.hcaptcha.com/siteverify")
+            {
+                Content = new FormUrlEncodedContent(postData)
+            };
+
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            using var httpRes = await client.SendAsync(httpReq, cts.Token);
+            if (!httpRes.IsSuccessStatusCode)
+            {
+                Log.Warning($"{CLASS_NAME}:{METHOD_NAME} - hCaptcha HTTP status {httpRes.StatusCode}");
+                throw new Exception($"error while verifying captcha");
+            }
+
+            var json = await httpRes.Content.ReadAsStringAsync();
+            var captchaResult = JsonSerializer.Deserialize<HCaptchaVerifyResponse>(
+                json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            if (captchaResult == null)
+            {
+                Log.Error($"{CLASS_NAME}:{METHOD_NAME} - hCaptcha response deserialization failed.");
+                throw new Exception("error while verifying captcha");
+            }
+
+            if (captchaResult.success)
+            {
+                Log.Information($"{CLASS_NAME}:{METHOD_NAME} - captcha verification successful.");
+                return true;
+            }
+            else
+            {
+                Log.Warning($"{CLASS_NAME}:{METHOD_NAME} - captcha verification failed.");
+                return false;
+            }
         }
+
 
         [HttpGet]
         [Route("hello")]
@@ -53,17 +117,27 @@ namespace Bux.Controllers.Auth
 
         [HttpPost("browser-register")]
         public async Task<ActionResult<BrowserRegisterResponse>> BrowserRegister([FromBody] BrowserRegisterRequest request,
-        [FromServices] Db db, [FromServices] SessionService sessionService)
+        [FromServices] Db db, [FromServices] SessionService sessionService, [FromServices] IHttpClientFactory httpClientFactory, [FromServices] IConfiguration configuration)
         {
             const string METHOD_NAME = "BrowserRegister()";
 
             using var transaction = db.Database.BeginTransaction();
             try
             {
+                var captchaIsVerified = await VerifyHcaptcha(httpClientFactory, configuration, request.captcha);
+                if (!captchaIsVerified)
+                {
+                    return await Task.FromResult(StatusCode(400, new BrowserRegisterResponse(
+                        username: "",
+                        error: "captcha_error",
+                        message: "Captcha verification failed."
+                    )));
+                }
 
                 if (string.IsNullOrEmpty(request.username))
                 {
-                    return await Task.FromResult(StatusCode(400, new BrowserLoginResponse(
+                    return await Task.FromResult(StatusCode(400, new BrowserRegisterResponse(
+                        username: "",
                         error: "missing username",
                         message: "missing username"
                     )));
@@ -81,7 +155,8 @@ namespace Bux.Controllers.Auth
                 {
                     // SessionMiddleware should have set the session ID in the context
                     Log.Error($"{CLASS_NAME}:{METHOD_NAME} - Session ID is null");
-                    return await Task.FromResult(StatusCode(500, new BrowserLoginResponse(
+                    return await Task.FromResult(StatusCode(500, new BrowserRegisterResponse(
+                        username: "",
                         error: "server_error",
                         message: "Session ID is not set."
                     )));
