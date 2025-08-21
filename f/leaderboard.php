@@ -5,6 +5,7 @@
 <?php
 	include 'php/include.php'
 ?>
+    <link rel="stylesheet" href="css/leaderboard.css">
 
 </head>
 
@@ -24,6 +25,7 @@
 	include 'php/footer.php'
 ?>
     </footer>
+	<script type="module" src="leaderboard.js"></script>
 </body>
 
 </html>
