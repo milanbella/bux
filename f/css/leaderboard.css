@@ -1,0 +1,16 @@
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+.my-place {
+    margin-top: 1rem;
+    font-weight: bold;
+}
