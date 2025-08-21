@@ -9,21 +9,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Bux.Controllers.Api
 {
-    [Route("api/guess-game")]
-    public class GuessGameController: Controller
+    [Route("api/leaderboard")]
+    public class LeaderBoardController: Controller
     {
-        public static string CLASS_NAME = typeof(GuessGameController).Name;
-
-        private const int MIN = 1;
-        private const int MAX = 10;
-
-        private int randomNumber()
-        {
-            var rnd = new Random();
-            int number = rnd.Next(MIN, MAX + 1);
-            return number;
-        }
-
+        public static string CLASS_NAME = typeof(LeaderBoardController).Name;
 
         [HttpGet]
         [Route("hello")]
@@ -32,7 +21,7 @@ namespace Bux.Controllers.Api
             return Content("Hello", "text/plain");
         }
 
-        [HttpPost("guess")]
+        [HttpGet("lines")]
         public async Task<ActionResult<ClickResponse>> Click([FromBody] ClickRequest request, [FromServices] Db db, [FromServices] SessionService sessionService)
         {
             const string METHOD_NAME = "Click()";

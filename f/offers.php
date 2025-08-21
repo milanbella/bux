@@ -16,7 +16,8 @@
     </header>
 
     <main>
-		<p> <a href="click_game.html"> click game </a> </p>
+		<p> <a href="click_game.html"> earn bux by clicking </a> </p>
+		<p> <a href="guess_game.html"> earn bux by guessing</a> </p>
     </main>
 
     <footer>

@@ -11,4 +11,5 @@ php leaderboard.php > dist/leaderboard.html
 php offers.php > dist/offers.html
 php withdraw.php > dist/withdraw.html
 php click_game.php > dist/click_game.html
+php guess_game.php > dist/guess_game.html
 
