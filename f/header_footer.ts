@@ -12,7 +12,7 @@ export function setRoBloxUser(username: string) {
 export function setTotalBux(totalBux: number) {
     let elem = document.getElementById("header-total-bux");
     if (elem !== null) {
-        elem.textContent = String(totalBux);
+        elem.textContent = `(${totalBux} bux)`;
     } else {
         console.warn("could not find total bux element");
     }

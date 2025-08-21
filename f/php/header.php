@@ -7,7 +7,10 @@
             </span>
 
             <span class="header-right">
+			<!--
             <a href="account.html"><i class="fa-solid fa-user-gear"></i> <span class="menu-item"> Account </span> </a>
             <span><i class="fa-solid fa-user"></i> <span id="header-user-name" class="menu-item"> Player123 </span> </span>
+			-->
+            <a href="account.html"><i class="fa-solid fa-user"></i> <span id="header-user-name" class="menu-item"> </span>  </a>
             </span>
         </nav>

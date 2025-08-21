@@ -1,6 +1,6 @@
 import { callBrowserRegister, BrowserRegisterRequest } from './api.js';
 import { showMessage, clearMessage } from './ui.js';
-import { setRoBloxUser } from './header_footer.js';
+import { setRoBloxUser, updateTotalBux } from './header_footer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('error', result.message);
         } else {
             setRoBloxUser(result.response.username);
+            updateTotalBux();
             showMessage('info', `Your roblox name is now: ${result.response.username}`) 
             document.getElementById('register-form')?.remove();
         }
