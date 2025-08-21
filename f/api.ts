@@ -16,6 +16,10 @@ export interface GetUserResponse {
     lastName: string;
 }
 
+export interface GetTotalBuxEarnedResponse {
+    totalBux: number;
+}
+
 export interface Response<T> {
     response: T | null;
     status: number | null;
@@ -101,5 +105,10 @@ export async function callBrowserRegister(request: BrowserRegisterRequest): Prom
 
 export async function callGetUser(): Promise<Response<GetUserResponse>> {
     let response = await callGetData<GetUserResponse>('b/auth/get-user');
+    return response;
+}
+
+export async function callGetTotalBuxEarned(): Promise<Response<GetTotalBuxEarnedResponse>> {
+    let response = await callGetData<GetTotalBuxEarnedResponse>('b/api/user/get-total-bux-earned');
     return response;
 }

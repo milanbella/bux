@@ -1,5 +1,5 @@
 import { callGetUser } from './api.js'
-import { setRoBloxUser } from './header_footer.js'
+import { setRoBloxUser, updateTotalBux } from './header_footer.js'
 
 async function displayCurrentUser() {
     let result = await callGetUser()
@@ -8,7 +8,7 @@ async function displayCurrentUser() {
     }
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
     displayCurrentUser();
+    updateTotalBux();
 });
