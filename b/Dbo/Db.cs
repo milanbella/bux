@@ -25,6 +25,7 @@ namespace Bux.Dbo
 
         public DbSet<BuxEarned> BuxEarned => Set<BuxEarned>();
         public DbSet<ClickGame> ClickGame => Set<ClickGame>();
+        public DbSet<GuessGame> GuessGame => Set<GuessGame>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -68,6 +69,10 @@ namespace Bux.Dbo
             // ClickGame
             modelBuilder.Entity<ClickGame>().HasKey(e => e.Id);
             modelBuilder.Entity<ClickGame>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+
+            // GuessGame
+            modelBuilder.Entity<GuessGame>().HasKey(e => e.Id);
+            modelBuilder.Entity<GuessGame>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
         }
     }
