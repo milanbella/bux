@@ -11,6 +11,6 @@
             <a href="account.html"><i class="fa-solid fa-user-gear"></i> <span class="menu-item"> Account </span> </a>
             <span><i class="fa-solid fa-user"></i> <span id="header-user-name" class="menu-item"> Player123 </span> </span>
 			-->
-            <a href="account.html"><i class="fa-solid fa-user"></i> <span id="header-user-name" class="menu-item"> </span>  </a>
+            <a href="account.html"><span id="avatar-image-container"> <i class="fa-solid fa-user"></i></span> <span id="header-user-name" class="menu-item"> </span>  </a>
             </span>
         </nav>

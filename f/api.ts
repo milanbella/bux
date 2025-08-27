@@ -21,6 +21,10 @@ export interface GetTotalBuxEarnedResponse {
     totalBux: number;
 }
 
+export interface GetAvatar64Response {
+    url64: string;
+}
+
 export interface Response<T> {
     response: T | null;
     status: number | null;
@@ -111,5 +115,10 @@ export async function callGetUser(): Promise<Response<GetUserResponse>> {
 
 export async function callGetTotalBuxEarned(): Promise<Response<GetTotalBuxEarnedResponse>> {
     let response = await callGetData<GetTotalBuxEarnedResponse>('b/api/user/get-total-bux-earned');
+    return response;
+}
+
+export async function callGetAavatar64(): Promise<Response<GetAvatar64Response>> {
+    let response = await callGetData<GetAvatar64Response>('b/api/user/get-avatar-64');
     return response;
 }

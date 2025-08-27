@@ -3,6 +3,7 @@ import { callGetData } from './api.js';
 interface LeaderBoardLine {
     username: string;
     buxAmount: number;
+    avatarUrl64: string;
 }
 
 interface GetLeaderBoardResponse {
@@ -33,6 +34,12 @@ async function loadLeaderboard(): Promise<void> {
             const userTd = document.createElement('td');
             userTd.textContent = line.username;
             tr.appendChild(userTd);
+
+            const avatarTd = document.createElement('td');
+            if (line.avatarUrl64) {
+                avatarTd.innerHTML=`<img src="${line.avatarUrl64}"></img>`
+            }
+            tr.appendChild(avatarTd)
 
             const buxTd = document.createElement('td');
             buxTd.textContent = String(line.buxAmount);

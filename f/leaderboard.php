@@ -23,6 +23,7 @@
                 <tr>
                     <th>#</th>
                     <th>User</th>
+                    <th>Avatar</th>
                     <th>Bux</th>
                 </tr>
             </thead>
