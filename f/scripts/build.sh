@@ -14,4 +14,3 @@ php click_game.php > dist/click_game.html
 php guess_game.php > dist/guess_game.html
 php avatar.php > dist/avatar.html
 php avatars_show.php > dist/avatars_show.html
-

@@ -1,11 +1,16 @@
-// avatar.ts
 import { displayAavatar } from './header_footer.js';
+import { showMessage, clearMessage } from './ui.js';
 
 type Variants = Record<number, Blob>;
 
+const formElement = document.getElementById('avatar-form') as HTMLFormElement | null; 
 const input = document.getElementById('avatar-input') as HTMLInputElement | null;
 const uploadBtn = document.getElementById('upload-btn') as HTMLButtonElement | null;
 const preview = document.getElementById('preview') as HTMLDivElement | null;
+
+if (!formElement) {
+	throw new Error('missin avatar-form DOM element');
+}
 
 if (!input) {
 	throw new Error('missin avatar-input DOM element');
@@ -18,6 +23,8 @@ if (!uploadBtn) {
 if (!preview) {
 	throw new Error('missin preview DOM element');
 }
+
+clearMessage();
 
 
 const ALLOWED = new Set<string>(['image/jpeg', 'image/png', 'image/webp']);
@@ -49,7 +56,7 @@ input.addEventListener('change', async () => {
 	}
 
 	try {
-		const {variants, previewUrl} = await processAvatar(file, SIZES);
+		const { variants } = await processAvatar(file, SIZES);
 		blobsBySize = variants;
 
 		// Preview largest variant
@@ -87,6 +94,8 @@ uploadBtn.addEventListener('click', async () => {
 	const json = await res.json();
 	console.log('Uploaded:', json);
     displayAavatar();
+    showMessage('info', 'avatar successfully uploaded');
+    formElement.remove();
 });
 
 /**

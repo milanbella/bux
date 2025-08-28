@@ -32,6 +32,30 @@ export interface Response<T> {
     message: string;
 }
 
+function set401() {
+	if (window.location.pathname === "/account.html") {
+		return;
+	}
+	const main = document.querySelector("main");
+
+	if (!main) {
+		console.error('missing main element');
+		return;
+	}
+
+	// remove all children
+	main.innerHTML = "";
+
+	// create anchor element
+	const link = document.createElement('a');
+	link.id = 'link-to-account-page'
+	link.href = 'account.html';
+	link.textContent = 'Please set your name.';
+
+	// append the anchor to <main>
+	main.appendChild(link);
+}
+
 export async function callGetData<T>(url: string): Promise<Response<T>> {
     try {
         const response = await fetch(url, {
@@ -39,6 +63,9 @@ export async function callGetData<T>(url: string): Promise<Response<T>> {
         });
         if (!response.ok) {
             console.error(`http get failed: ${url}, status ${response.status}`);
+            if (response.status ===  401) {
+				set401();
+            }
             let responseAny = await response.json();
             return {
                 response: null,
@@ -76,6 +103,9 @@ export async function callPostData<T>(url: string, data: string): Promise<Respon
         });
         if (!response.ok) {
             console.error(`http post failed: ${url}, status ${response.status}`);
+            if (response.status ===  401) {
+				set401();
+            }
             let responseAny = await response.json();
             return {
                 response: null,

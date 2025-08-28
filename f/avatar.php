@@ -17,12 +17,15 @@
     </header>
 
     <main>
-		<form>
+		<form id="avatar-form">
 			<input id="avatar-input" type="file"></input>
 			<button id="upload-btn" type="button"> Save </button>
+
+			<div id="preview"></div>
 		</form>
 
-		<div id="preview"></div>
+
+		<div id="message"></div>
 
     </main>
 

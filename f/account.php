@@ -33,6 +33,10 @@
         </form>
 		<div id="message"></div>
 
+        <div>
+            <a href="avatar.html"> Change your avatar </a>
+        </div>
+
     </main>
 
     <footer>

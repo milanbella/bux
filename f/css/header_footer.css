@@ -1,3 +1,25 @@
+:root {
+	/* Info */
+	--msg-info-bg: #d9edf7;
+	--msg-info-color: #31708f;
+	--msg-info-border: #bce8f1;
+
+	/* Warning */
+	--msg-warn-bg: #fcf8e3;
+	--msg-warn-color: #8a6d3b;
+	--msg-warn-border: #faebcc;
+
+	/* Error */
+	--msg-error-bg: #f2dede;
+	--msg-error-color: #a94442;
+	--msg-error-border: #ebccd1;
+
+	/* Common */
+	--msg-padding: 0.75em 1em;
+	--msg-radius: 4px;
+	--msg-font: 16px/1.4 sans-serif;
+}
+
 body {
 	margin: 0;
 	font-family: sans-serif;
@@ -62,4 +84,33 @@ footer nav {
 
 .menu-item {
 	margin-left: 2px;
+}
+
+/* 2. Base “message” class */
+.message {
+	font: var(--msg-font);
+	padding: var(--msg-padding);
+	border: 1px solid transparent;
+	border-radius: var(--msg-radius);
+	margin: 0.5em 0;
+    cursor: pointer;
+}
+
+/* 3. Modifiers for each type */
+.message.info {
+	background-color: var(--msg-info-bg);
+	color: var(--msg-info-color);
+	border-color: var(--msg-info-border);
+}
+
+.message.warn {
+	background-color: var(--msg-warn-bg);
+	color: var(--msg-warn-color);
+	border-color: var(--msg-warn-border);
+}
+
+.message.error {
+	background-color: var(--msg-error-bg);
+	color: var(--msg-error-color);
+	border-color: var(--msg-error-border);
 }

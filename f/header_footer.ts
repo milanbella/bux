@@ -3,6 +3,7 @@ import { callGetTotalBuxEarned, callGetAavatar64 } from './api.js';
 export function setRoBloxUser(username: string) {
     let elem = document.getElementById('header-user-name');
     if (elem !== null) {
+        displayAavatar();
         elem.textContent = username;
     } else {
         console.warn('could not find element');
