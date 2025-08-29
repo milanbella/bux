@@ -16,5 +16,7 @@ namespace Bux.Dbo.Model
         public bool? IsEmailVerified { get; set; }
         public string? Country { get; set; }
         public string? Language { get; set; }
+        public int? ReferralUserId { get; set; }
+        public User? ReferralUser { get; set; }
     }
 }

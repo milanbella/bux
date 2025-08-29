@@ -1,13 +1,16 @@
 import { callGetTotalBuxEarned, callGetAavatar64 } from './api.js';
 
+
 export function setRoBloxUser(username: string) {
     let elem = document.getElementById('header-user-name');
     if (elem !== null) {
         displayAavatar();
         elem.textContent = username;
     } else {
-        console.warn('could not find element');
+        console.error('could not find element');
     }
+
+    setReferralUrl(username);
 }
 
 export function setTotalBux(totalBux: number) {
@@ -40,3 +43,12 @@ export async function displayAavatar() {
         }
     }
 }
+
+export function setReferralUrl(username: string) {
+    let referralLinkEl = document.getElementById('referral-link') as HTMLElement | null;
+    if (referralLinkEl) {
+        let url = `${window.location.protocol}//${window.location.host}/b/referral?code=${username}`
+        referralLinkEl.innerText = url;
+    }
+}
+

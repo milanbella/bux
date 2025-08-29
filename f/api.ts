@@ -1,6 +1,7 @@
 export interface BrowserRegisterRequest {
     username: string;
     captcha: string;
+    referralCode: string;
 }
 
 export interface BrowserRegisterResponse {
@@ -23,6 +24,10 @@ export interface GetTotalBuxEarnedResponse {
 
 export interface GetAvatar64Response {
     url64: string;
+}
+
+export interface GetReferralsCountResponse {
+    referralsCount: number;
 }
 
 export interface Response<T> {
@@ -150,5 +155,10 @@ export async function callGetTotalBuxEarned(): Promise<Response<GetTotalBuxEarne
 
 export async function callGetAavatar64(): Promise<Response<GetAvatar64Response>> {
     let response = await callGetData<GetAvatar64Response>('b/api/user/get-avatar-64');
+    return response;
+}
+
+export async function callGetReferralsCount(): Promise<Response<GetReferralsCountResponse>> {
+    let response = await callGetData<GetReferralsCountResponse>('b/api/user/get-referrals-count');
     return response;
 }

@@ -325,15 +325,11 @@ namespace Bux.Controllers.Api
         public async Task<ActionResult<GetAvatar64Response>> GetAvatar64([FromServices] Db db, [FromServices] IConfiguration configuration)
         {
             const string METHOD_NAME = "GetAvatar64()";
-            var user = await sessionService.GetLoggedInUser();
-            if (user == null)
-            {
-                return Unauthorized("No user logged in");
-            }
+            var userId = await sessionService.GetUserId();
 
             // Get the latest avatar for the user (by Id descending)
             var avatar = await db.Avatar
-                .Where(a => a.UserId == user.Id)
+                .Where(a => a.UserId == userId)
                 .FirstOrDefaultAsync();
 
             if (avatar == null)
@@ -356,6 +352,21 @@ namespace Bux.Controllers.Api
                 : null;
             var response = new GetAvatar64Response(url64);
             return Ok(response);
+        }
+
+        [HttpGet("get-referrals-count")]
+        public async Task<ActionResult<GetReferralsCountResponse>> GetReferralsCount([FromServices] Db db)
+        {
+            const string METHOD_NAME = "GetReferralsCount()";
+
+            var userId = await sessionService.GetUserId();
+
+            // count how many users have ReferralUserId = current user.Id
+            var count = await db.User
+                .Where(u => u.ReferralUserId == userId)
+                .CountAsync();
+
+            return Ok(new GetReferralsCountResponse(count));
         }
 
     }

@@ -29,6 +29,7 @@ namespace Bux.Dbo
         public DbSet<Avatar> Avatar => Set<Avatar>();
 
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // User
@@ -36,6 +37,7 @@ namespace Bux.Dbo
             modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.Name).IsUnique(true);
             modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.Email).IsUnique(true);
             modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.EmailVerificationCode).IsUnique(true);
+            modelBuilder.Entity<Bux.Dbo.Model.User>().HasOne(e => e.ReferralUser).WithMany().HasForeignKey(e => e.ReferralUserId);
 
             // JWT
             modelBuilder.Entity<JWT>().HasKey(e => e.Id);

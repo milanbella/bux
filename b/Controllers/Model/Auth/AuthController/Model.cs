@@ -1,6 +1,6 @@
 ﻿namespace Bux.Controllers.Model.Auth.AuthController
 {
-    public record BrowserRegisterRequest(string username, string captcha);
+    public record BrowserRegisterRequest(string username, string captcha, string referralCode);
     public record BrowserRegisterResponse(string username, string error, string message);
 
     public record BrowserLoginRequest(string username, string password);

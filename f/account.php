@@ -2,48 +2,57 @@
 <html lang="en">
 
 <head>
-<?php
+	<?php
 	include 'php/include.php'
-?>
+	?>
 
-    <link rel="stylesheet" href="css/account.css">
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+	<link rel="stylesheet" href="css/account.css">
+	<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
 
 <body>
-    <header>
-<?php
-	include 'php/header.php'
-?>
-    </header>
+	<header>
+		<?php
+		include 'php/header.php'
+		?>
+	</header>
 
-    <main>
+	<main>
 
-        <!--<form id="register-form" class="container-register-form" action="" method="POST">-->
-        <form id="register-form" class="container-register-form">
-            <h4 class="register-form-header">Provide us your roblox usernname to redeem earned bux!</h4>
-            <div class="register-form-row">
-                <div>
-                    <label for="username">roblox username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <button type="submit"> Submit </button>
-            </div>
+		<!--<form id="register-form" class="container-register-form" action="" method="POST">-->
+		<form id="register-form" class="container-register-form">
+			<h4 class="register-form-header">Provide us your roblox usernname to redeem earned bux!</h4>
+			<div class="register-form-row">
+				<div>
+					<label for="username">roblox username</label>
+					<input type="text" id="username" name="username" required>
+				</div>
+				<button type="submit"> Submit </button>
+			</div>
 			<div class="h-captcha" data-sitekey="9c16973a-002e-43fa-9dd0-fd4899b64e68"></div>
-        </form>
+		</form>
 		<div id="message"></div>
 
-        <div>
-            <a href="avatar.html"> Change your avatar </a>
+		<div>
+			<a href="avatar.html"> Change your avatar </a>
+		</div>
+
+		<div>
+            <span id="referrals-count-text"> referrals count: </span> 
         </div>
 
-    </main>
+		<div id="referral-container" class="referral-container">
+			<span id="referral-link" class="referral-link">https://example.com/ref?code=ABC123</span>
+			<button id="referral-copy-btn" class="referral-button">Copy</button>
+		</div>
 
-    <footer>
-<?php
-	include 'php/footer.php'
-?>
-    </footer>
+	</main>
+
+	<footer>
+		<?php
+		include 'php/footer.php'
+		?>
+	</footer>
 	<script type="module" src="account.js"></script>
 </body>
 

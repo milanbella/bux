@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-<?php
-	include 'php/include.php'
-?>
+    <?php
+    include 'php/include.php'
+    ?>
 
     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
     <header>
-<?php
-	include 'php/header.php'
-?>
+        <?php
+        include 'php/header.php'
+        ?>
     </header>
 
     <main>
@@ -25,9 +25,9 @@
     </main>
 
     <footer>
-<?php
-	include 'php/footer.php'
-?>
+        <?php
+        include 'php/footer.php'
+        ?>
     </footer>
 </body>
 

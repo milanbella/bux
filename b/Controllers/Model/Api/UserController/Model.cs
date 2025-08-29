@@ -7,4 +7,6 @@
 
     public record GetAvatarsResponse(string url64, string url128, string url256);
     public record GetAvatar64Response(string url64);
+
+    public record GetReferralsCountResponse(int referralsCount);
 }

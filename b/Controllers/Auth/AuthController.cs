@@ -147,6 +147,19 @@ namespace Bux.Controllers.Auth
                 // Find user by username
                 var user = await db.User.FirstOrDefaultAsync(u => u.Name == request.username);
 
+                User referralUser = null;
+                if (!string.IsNullOrEmpty(request.referralCode))
+                {
+                    referralUser = await db.User.FirstOrDefaultAsync(u => u.Name == request.referralCode);
+                    if (user != null && referralUser != null)
+                    {
+                        if (referralUser.Id == user.Id)
+                        {
+                            referralUser = null;
+                        }
+                    }
+                }
+
 
 
                 // Get session ID using SessionService
@@ -177,6 +190,7 @@ namespace Bux.Controllers.Auth
                     {
                         Name = request.username,
                         Email = request.username,
+                        ReferralUserId = referralUser != null ? referralUser.Id : null,
                     };
                     db.User.Add(user);
                 }
