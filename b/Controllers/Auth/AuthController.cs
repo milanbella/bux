@@ -189,10 +189,16 @@ namespace Bux.Controllers.Auth
                     user = new User
                     {
                         Name = request.username,
-                        Email = request.username,
                         ReferralUserId = referralUser != null ? referralUser.Id : null,
+                        CreatedAt = DateTime.Now
                     };
                     db.User.Add(user);
+                }
+                if (user.CreatedAt == null)
+                {
+                    // create at null means user existed but never logged in (it was created for the purpose of having same users, basically fake user to say it bluntly)
+                    user.CreatedAt = DateTime.Now;
+                    db.User.Update(user);
                 }
                 await db.SaveChangesAsync();
 

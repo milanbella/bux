@@ -5,6 +5,7 @@ using MySqlConnector;
 using Serilog;
 using Bux.Middleware;
 using Microsoft.AspNetCore.HttpOverrides;
+using bux.Simulate;
 
 if (false)
 {
@@ -162,6 +163,12 @@ builder.Services.AddScoped<Bux.Auth.ApiKeyService>(provider =>
 {
     MySqlDataSource dataSource = provider.GetService<MySqlDataSource>();
     return new Bux.Auth.ApiKeyService(dataSource);
+});
+
+builder.Services.AddHostedService<SimulatePlayingUsersService>(provider =>
+{
+    MySqlDataSource dataSource = provider.GetService<MySqlDataSource>();
+    return new SimulatePlayingUsersService(dataSource);
 });
 
 

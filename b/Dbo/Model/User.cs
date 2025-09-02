@@ -18,5 +18,6 @@ namespace Bux.Dbo.Model
         public string? Language { get; set; }
         public int? ReferralUserId { get; set; }
         public User? ReferralUser { get; set; }
+        public System.DateTime? CreatedAt { get; set; }
     }
 }
