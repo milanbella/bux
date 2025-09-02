@@ -1,8 +1,9 @@
 ﻿using MySqlConnector;
 using Org.BouncyCastle.Bcpg;
 using Serilog;
+using Bux.Controllers.Model.Api1.EarnersController;
 
-namespace bux.Simulate
+namespace Bux.Simulate
 {
     public class SimulatePlayingUsersService : BackgroundService
     {
@@ -100,11 +101,10 @@ namespace bux.Simulate
             }
         }
 
-        public record ReadTopEarnersReturn(int userId, String username, double ammount);
 
-        public async Task ReadTopEarnersByAmmount1(int limit)
+        public static async Task<List<Earner>> ReadTopEarnersByAmmount(MySqlDataSource dataSource, int limit)
         {
-            const string METHOD_NAME = nameof(ReadTopEarnersByAmmount1);
+            const string METHOD_NAME = nameof(ReadTopEarnersByAmmount);
 
             if (limit <= 0) limit = 10;
 
@@ -112,48 +112,60 @@ namespace bux.Simulate
             {
                 await using var conn = await dataSource.OpenConnectionAsync();
 
-                // Use backticks for `User` to avoid clashing with MySQL's USER() function.
                 const string SQL = @"
-                    SELECT 
-                        u.Id AS UserId,
+                SELECT *
+                FROM (
+                    SELECT
+                        u.Id   AS UserId,
                         u.Name AS Username,
-                        IFNULL(b.Amount1, 0) AS Amount1Value
-                    FROM BuxEarned b
-                    INNER JOIN `User` u ON u.Id = b.UserId
-                    WHERE Amount1 IS NOT NULL AND Amount1 > 0
-                    ORDER BY Amount1Value DESC
-                    LIMIT @limit;
+                        b.Amount AS AmountValue
+                    FROM `user` u
+                    JOIN buxearned b ON b.UserId = u.Id
+                    WHERE u.CreatedAt IS NOT NULL
+                          AND b.Amount > 0
+
+                UNION ALL
+
+                SELECT
+                    u.Id   AS UserId,
+                    u.Name AS Username,
+                    b.Amount1 AS AmountValue
+                FROM `user` u
+                JOIN buxearned b ON b.UserId = u.Id
+                WHERE u.CreatedAt IS NULL
+                     AND b.Amount1 > 0
+                ) AS t
+                ORDER BY t.AmountValue DESC
+                LIMIT @limit;
+
                 ";
 
                 await using var cmd = new MySqlCommand(SQL, conn);
                 cmd.Parameters.Add("@limit", MySqlDbType.Int32).Value = limit;
 
-                var results = new List<ReadTopEarnersReturn>();
+                var results = new List<Earner>();
 
                 await using var reader = await cmd.ExecuteReaderAsync();
                 while (await reader.ReadAsync())
                 {
                     int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
-                    string username = reader.GetString(reader.GetOrdinal("Username")).Trim();
 
-                    double amount = reader.GetDouble(reader.GetOrdinal("Amount1Value"));
+                    string username;
+                    var usernameOrdinal = reader.GetOrdinal("Username");
+                    username = reader.IsDBNull(usernameOrdinal) ? "(no name)" : reader.GetString(usernameOrdinal).Trim();
 
-                    // Note: your record field is named 'ammount' (with two m's) — preserving that.
-                    results.Add(new ReadTopEarnersReturn(userId, username, amount));
+                    double amount = reader.GetDouble(reader.GetOrdinal("AmountValue"));
+
+                    results.Add(new Earner(userId, username, amount));
                 }
 
-                // Log a compact table
-                if (results.Count == 0)
-                {
-                    Log.Information($"{CLASS_NAME}:{METHOD_NAME}() No earners found.");
-                    return;
-                }
-
-                Log.Information($"{CLASS_NAME}:{METHOD_NAME}() Top {results.Count} by Amount1:");
+                List<Earner> earners = new List<Earner>();
                 foreach (var (userId, username, ammount) in results)
                 {
-                    Log.Information($" - #{userId,-6} {username,-24} Amount1={ammount}");
+                    earners.Add(new Earner(userId, username, ammount));
                 }
+
+                return earners;
             }
             catch (Exception ex)
             {
@@ -161,6 +173,7 @@ namespace bux.Simulate
                 throw;
             }
         }
+
     }
 
 }

@@ -7,6 +7,9 @@
     ?>
 
     <link rel="stylesheet" href="css/index.css">
+
+    <link rel="stylesheet" href="css/css/widgets/top_earners/top_earners.css">
+	<script type="module" src="widgets/top_earners/top_earners.js"></script>
 </head>
 
 <body>
@@ -19,7 +22,8 @@
     <main>
 
         <div class="main-content">
-            <img src="img/banner.png"></img>
+            <!--<img src="img/banner.png"></img>-->
+			<div id="top-earners"></div>
         </div>
 
     </main>

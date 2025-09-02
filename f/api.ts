@@ -71,12 +71,22 @@ export async function callGetData<T>(url: string): Promise<Response<T>> {
             if (response.status ===  401) {
 				set401();
             }
-            let responseAny = await response.json();
-            return {
-                response: null,
-                status: response.status,
-                error: responseAny.error || '',
-                message: responseAny.message || '',
+            try {
+                let responseAny = await response.json();
+                return {
+                    response: null,
+                    status: response.status,
+                    error: responseAny.error || '',
+                    message: responseAny.message || '',
+                }
+            } catch {
+                let text = await response.text();
+                return {
+                    response: null,
+                    status: response.status,
+                    error: text || '',
+                    message: text || '',
+                }
             }
         }
         let responseT: T = await response.json() as T;
@@ -111,12 +121,22 @@ export async function callPostData<T>(url: string, data: string): Promise<Respon
             if (response.status ===  401) {
 				set401();
             }
-            let responseAny = await response.json();
-            return {
-                response: null,
-                status: response.status,
-                error: responseAny.error || '',
-                message: responseAny.message || '',
+            try {
+                let responseAny = await response.json();
+                return {
+                    response: null,
+                    status: response.status,
+                    error: responseAny.error || '',
+                    message: responseAny.message || '',
+                }
+            } catch {
+                let text = await response.text();
+                return {
+                    response: null,
+                    status: response.status,
+                    error: text || '',
+                    message: text || '',
+                }
             }
         }
         let responseT: T = await response.json() as T;

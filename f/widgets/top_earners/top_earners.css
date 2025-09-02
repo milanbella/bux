@@ -1,0 +1,46 @@
+.top-earners {
+	max-width: 400px;
+	margin: 1rem auto;
+	font-family: sans-serif;
+}
+
+.top-earners-title {
+	font-size: 1.2rem;
+	margin-bottom: 0.5rem;
+	text-align: center;
+}
+
+.top-earners-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.top-earner-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background: #f5f5f5;
+	padding: 0.5rem 0.8rem;
+	border-radius: 6px;
+}
+
+.top-earner-row .rank {
+	width: 2rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.top-earner-row .username {
+	flex: 1;
+	padding: 0 0.5rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.top-earner-row .amount {
+	min-width: 4rem;
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
