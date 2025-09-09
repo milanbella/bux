@@ -796,7 +796,6 @@ namespace Bux.Seed
                 "FursOfFire",
                 "TheSnakeRealSpider",
                 "hurbburh235",
-                "walkinghormone",
                 "lolrekt12427",
                 "kitsoftkat",
                 "Miikoow",
@@ -808,11 +807,9 @@ namespace Bux.Seed
                 "Xdahemxx",
                 "SunshinesssBack",
                 "XD_L0LGETREKT",
-                "swag992010",
                 "BlxzeBxrn",
                 "roblox_user_8539072395",
                 "ThugginLove24",
-                "PSUED0MANIA",
                 "1xcIone",
                 "Sektor_nonstop",
                 "Veduvex",
@@ -836,7 +833,6 @@ namespace Bux.Seed
                 "LylaskyB",
                 "Fem_Star3",
                 "anthonybeg",
-                "lUwUNIKONIKONIUWUl",
                 "rpid5",
                 "Jadieb002",
                 "Weliveinasociety1043",
@@ -850,7 +846,6 @@ namespace Bux.Seed
                 "Anxthy_y",
                 "Lumierenes",
                 "BrightWindsky",
-                "lovingallbuthim",
                 "Midnight_guru",
                 "Susie_7628",
                 "Starr_Lia06",
@@ -897,7 +892,6 @@ namespace Bux.Seed
                 "ForgivingPuppy",
                 "crealw",
                 "jfgjjkjfewehjnbxse",
-                "bunniecoda",
                 "IncenseAroma",
                 "Rznyxx",
                 "Savtyck",
@@ -916,7 +910,6 @@ namespace Bux.Seed
                 "SeerVeeri",
                 "Midsch00Ier",
                 "RosesBlackSins",
-                "matlkk19",
                 "snow_yviolet",
                 "roblox_user_4877168832",
                 "unrealzs",
@@ -949,7 +942,7 @@ namespace Bux.Seed
                 "keito_yy"
             };
 
-            int i = 0;
+            int i = 1;
             int ammount = 1;
             foreach (String userName in userNames)
             {
@@ -957,6 +950,7 @@ namespace Bux.Seed
                 modelBuilder.Entity<Bux.Dbo.Model.User>().HasData(
                     new Bux.Dbo.Model.User { Id = i, Name = userName }
                 );
+                /*
                 if (i < 100) 
                 {
                     ammount = GetRandom(110,321);
@@ -965,6 +959,8 @@ namespace Bux.Seed
                 {
                     ammount = GetRandom(1, 120);
                 }
+                */
+                ammount = i;
                 modelBuilder.Entity<Bux.Dbo.Model.BuxEarned>().HasData(
                     new Bux.Dbo.Model.BuxEarned { Id = i, UserId = i, Amount = ammount }
                 );

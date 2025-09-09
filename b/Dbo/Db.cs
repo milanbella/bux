@@ -38,6 +38,7 @@ namespace Bux.Dbo
             modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.Email).IsUnique(true);
             modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => e.EmailVerificationCode).IsUnique(true);
             modelBuilder.Entity<Bux.Dbo.Model.User>().HasOne(e => e.ReferralUser).WithMany().HasForeignKey(e => e.ReferralUserId);
+            modelBuilder.Entity<Bux.Dbo.Model.User>().HasIndex(e => new { e.CreatedAt, e.Id, e.Name });
 
             // JWT
             modelBuilder.Entity<JWT>().HasKey(e => e.Id);
@@ -68,6 +69,9 @@ namespace Bux.Dbo
             // BuxEarned
             modelBuilder.Entity<BuxEarned>().HasKey(e => e.Id);
             modelBuilder.Entity<BuxEarned>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+            modelBuilder.Entity<BuxEarned>().HasIndex(e => new { e.Amount, e.UserId }).IsDescending(true, false);
+            modelBuilder.Entity<BuxEarned>().HasIndex(e => new { e.Amount1, e.UserId }).IsDescending(true, false);
+
 
             // ClickGame
             modelBuilder.Entity<ClickGame>().HasKey(e => e.Id);
@@ -80,6 +84,8 @@ namespace Bux.Dbo
             // Avatar
             modelBuilder.Entity<Avatar>().HasKey(e => e.Id);
             modelBuilder.Entity<Avatar>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+
+			Bux.Seed.Users.Seed(modelBuilder, Configuration, Environment);
 
         }
     }

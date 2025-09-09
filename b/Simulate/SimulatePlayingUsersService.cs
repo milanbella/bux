@@ -39,7 +39,8 @@ namespace Bux.Simulate
                 }
 
                 // wait 5 minutes before running again
-                await Task.Delay(TimeSpan.FromMinutes(5), ct);
+                //await Task.Delay(TimeSpan.FromMinutes(5), ct);
+                await Task.Delay(TimeSpan.FromSeconds(5), ct);
             }
         }
 
@@ -54,7 +55,7 @@ namespace Bux.Simulate
                 // 1) Read all IDs
                 var ids = new List<int>();
                 // user.CreatedAt IS NULL means user is fake/simulated
-                await using (var selectCmd = new MySqlCommand("SELECT Id FROM BuxEarned b INNER JOIN User u ON b.UserId = u.Id WHERE u.CreatedAt IS NULL ", conn))
+                await using (var selectCmd = new MySqlCommand("SELECT u.Id as userId FROM BuxEarned b LEFT JOIN User u ON b.UserId = u.Id WHERE u.CreatedAt IS NULL ", conn))
                 {
                     await using var reader = await selectCmd.ExecuteReaderAsync(ct);
                     while (await reader.ReadAsync(ct))

@@ -5,7 +5,7 @@ using MySqlConnector;
 using Serilog;
 using Bux.Middleware;
 using Microsoft.AspNetCore.HttpOverrides;
-using bux.Simulate;
+using Bux.Simulate;
 
 if (false)
 {
