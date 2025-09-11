@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="css/index.css">
 
-    <link rel="stylesheet" href="css/css/widgets/top_earners/top_earners.css">
+    <link rel="stylesheet" href="css/widgets/top_earners/top_earners.css">
 	<script type="module" src="widgets/top_earners/top_earners.js"></script>
 </head>
 
