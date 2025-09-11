@@ -8,6 +8,10 @@ cp -r css dist
 mkdir -p dist/css/widgets/top_earners
 cp widgets/top_earners/top_earners.css dist/css/widgets/top_earners
 
+mkdir -p dist/css/php/index_html 
+cp php/index_html/top_buttons_left.css dist/css/php/index_html/top_buttons_left.css 
+cp php/index_html/top_buttons_right.css dist/css/php/index_html/top_buttons_right.css 
+
 cp -r img dist
 
 php index.php > dist/index.html

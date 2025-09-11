@@ -1,7 +1,14 @@
 
 .main-content {
     display: flex;
+	flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.top-buttons {
+    display: flex;
+	justify-content: space-between;
+	width: 100%;
 }
 

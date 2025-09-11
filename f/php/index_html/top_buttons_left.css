@@ -1,0 +1,122 @@
+:root {
+  --top-buttons-left-tile-size: 88px;     
+  --top-buttons-left-tile-radius: 14px;
+  --top-buttons-left-gap: 22px;
+  --top-buttons-left-shadow: 0 6px 18px rgba(0,0,0,.25);
+  --top-buttons-left-shadow-hover: 0 10px 24px rgba(0,0,0,.35);
+}
+
+.top-buttons-left {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(var(--top-buttons-left-tile-size), 1fr));
+    gap: var(--top-buttons-left-gap);
+    align-items: center;
+    justify-content: start;
+    padding: 32px;
+    max-width: 960px;
+}
+
+.top-buttons-left .tile {
+    width: var(--top-buttons-left-tile-size);
+    height: var(--top-buttons-left-tile-size);
+    border-radius: var(--top-buttons-left-tile-radius);
+    box-shadow: var(--top-buttons-left-shadow);
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    position: relative;
+    overflow: hidden;
+    background: #2a2a2a;
+}
+
+.top-buttons-left .tile:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--top-buttons-left-shadow-hover);
+}
+
+.top-buttons-left .tile:active {
+    transform: translateY(0);
+    filter: brightness(.98);
+}
+
+.top-buttons-left .tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), inset 0 -1px 0 rgba(0, 0, 0, .12);
+    pointer-events: none;
+}
+
+.top-buttons-left .icon {
+    width: 44%;
+    height: 44%;
+    display: block;
+}
+
+/* Specific tiles */
+.top-buttons-left .tile.follow {
+    background: #176a3a;
+}
+
+.top-buttons-left .follow-text {
+    color: #e7f8ec;
+    text-align: center;
+    line-height: 1.1;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .2px;
+}
+
+.top-buttons-left .follow-text strong {
+    display: block;
+    font-size: 18px;
+}
+
+.top-buttons-left .tile.discord {
+    background: #1f2937;
+}
+
+/* Instagram gradient */
+.top-buttons-left .tile.instagram {
+    background: radial-gradient(circle at 30% 107%,
+            #fdf497 0%,
+            #fdf497 5%,
+            #fd5949 45%,
+            #d6249f 60%,
+            #285AEB 90%);
+}
+
+.top-buttons-left .insta-icon {
+    width: 60%;
+    height: 60%;
+}
+
+.top-buttons-left .tile.twitter {
+    background: #1DA1F2;
+}
+
+.top-buttons-left .tile.bitlabs {
+    background: #fff;
+}
+
+.top-buttons-left .tile.cpx {
+    background: #5569d6;
+}
+
+.top-buttons-left .tile.monlix {
+    background: #bcbcbc;
+}
+
+.top-buttons-left .tile.notik {
+    background: #f8f8f8;
+}
+
+.top-buttons-left .logo-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #111;
+    text-align: center;
+    padding: 4px;
+}

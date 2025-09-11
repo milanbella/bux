@@ -1,0 +1,122 @@
+:root {
+  --top-buttons-right-tile-size: 88px;     
+  --top-buttons-right-tile-radius: 14px;
+  --top-buttons-right-gap: 22px;
+  --top-buttons-right-shadow: 0 6px 18px rgba(0,0,0,.25);
+  --top-buttons-right-shadow-hover: 0 10px 24px rgba(0,0,0,.35);
+}
+
+.top-buttons-right {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(var(--top-buttons-right-tile-size), 1fr));
+    gap: var(--top-buttons-right-gap);
+    align-items: center;
+    justify-content: start;
+    padding: 32px;
+    max-width: 960px;
+}
+
+.top-buttons-right .tile {
+    width: var(--top-buttons-right-tile-size);
+    height: var(--top-buttons-right-tile-size);
+    border-radius: var(--top-buttons-right-tile-radius);
+    box-shadow: var(--top-buttons-right-shadow);
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    position: relative;
+    overflow: hidden;
+    background: #2a2a2a;
+}
+
+.top-buttons-right .tile:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--top-buttons-right-shadow-hover);
+}
+
+.top-buttons-right .tile:active {
+    transform: translateY(0);
+    filter: brightness(.98);
+}
+
+.top-buttons-right .tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), inset 0 -1px 0 rgba(0, 0, 0, .12);
+    pointer-events: none;
+}
+
+.top-buttons-right .icon {
+    width: 44%;
+    height: 44%;
+    display: block;
+}
+
+/* Specific tiles */
+.top-buttons-right .tile.follow {
+    background: #176a3a;
+}
+
+.top-buttons-right .follow-text {
+    color: #e7f8ec;
+    text-align: center;
+    line-height: 1.1;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .2px;
+}
+
+.top-buttons-right .follow-text strong {
+    display: block;
+    font-size: 18px;
+}
+
+.top-buttons-right .tile.discord {
+    background: #1f2937;
+}
+
+/* Instagram gradient */
+.top-buttons-right .tile.instagram {
+    background: radial-gradient(circle at 30% 107%,
+            #fdf497 0%,
+            #fdf497 5%,
+            #fd5949 45%,
+            #d6249f 60%,
+            #285AEB 90%);
+}
+
+.top-buttons-right .insta-icon {
+    width: 60%;
+    height: 60%;
+}
+
+.top-buttons-right .tile.twitter {
+    background: #1DA1F2;
+}
+
+.top-buttons-right .tile.bitlabs {
+    background: #fff;
+}
+
+.top-buttons-right .tile.cpx {
+    background: #5569d6;
+}
+
+.top-buttons-right .tile.monlix {
+    background: #bcbcbc;
+}
+
+.top-buttons-right .tile.notik {
+    background: #f8f8f8;
+}
+
+.top-buttons-right .logo-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #111;
+    text-align: center;
+    padding: 4px;
+}
