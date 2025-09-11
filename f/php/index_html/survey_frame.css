@@ -1,0 +1,8 @@
+#survey-frame {
+  display: block;
+  width: 100%;
+  height: 800px;
+  border: none;
+  background: #f7f9fd;
+  margin: 0 auto 16px auto;
+}

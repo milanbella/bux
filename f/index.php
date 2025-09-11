@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="css/php/index_html/top_buttons_left.css">
     <link rel="stylesheet" href="css/php/index_html/top_buttons_right.css">
 
+    <link rel="stylesheet" href="css/php/index_html/survey_frame.css">
+
+    <link rel="stylesheet" href="css/php/index_html/testimonials.css">
+
 </head>
 
 <body>
@@ -37,6 +41,12 @@
 				include 'php/index_html/top_buttons_right.php'
 				?>
 			</div>
+			<?php
+			include 'php/index_html/survey_frame.php'
+			?>
+			<?php
+			include 'php/index_html/testimonials.php'
+			?>
         </div>
 
     </main>

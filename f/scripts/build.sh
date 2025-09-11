@@ -11,6 +11,8 @@ cp widgets/top_earners/top_earners.css dist/css/widgets/top_earners
 mkdir -p dist/css/php/index_html 
 cp php/index_html/top_buttons_left.css dist/css/php/index_html/top_buttons_left.css 
 cp php/index_html/top_buttons_right.css dist/css/php/index_html/top_buttons_right.css 
+cp php/index_html/survey_frame.css dist/css/php/index_html/survey_frame.css 
+cp php/index_html/testimonials.css dist/css/php/index_html/testimonials.css 
 
 cp -r img dist
 
