@@ -1,4 +1,4 @@
-import {callGetData, callPostData, Response} from './api.js';
+import {callGetData, callPostData, Response} from './src/api.js';
 
 interface GetAvatarsResponse {
     url64: string;

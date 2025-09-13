@@ -1,5 +1,5 @@
-import {callGetData, callPostData, Response} from './api.js';
-import { updateTotalBux } from './header_footer.js';
+import {callGetData, callPostData, Response} from './src/api.js';
+import { updateTotalBux } from './src/header_footer.js';
 
 
 interface ClickRequest {

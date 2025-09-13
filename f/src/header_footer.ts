@@ -1,4 +1,4 @@
-import { callGetTotalBuxEarned, callGetAavatar64 } from './api.js';
+import { callGetTotalBuxEarned, callGetAavatar64 } from '../src/api.js';
 
 
 export function setRoBloxUser(username: string) {
@@ -16,7 +16,7 @@ export function setRoBloxUser(username: string) {
 export function setTotalBux(totalBux: number) {
     let elem = document.getElementById('header-total-bux');
     if (elem !== null) {
-        elem.textContent = `(${totalBux} bux)`;
+        elem.textContent = `(${totalBux} R$)`;
     } else {
         console.warn('could not find total bux element');
     }

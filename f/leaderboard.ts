@@ -1,4 +1,4 @@
-import { callGetData } from './api.js';
+import { callGetData } from './src/api.js';
 
 interface LeaderBoardLine {
     username: string;
@@ -42,7 +42,8 @@ async function loadLeaderboard(): Promise<void> {
             tr.appendChild(avatarTd)
 
             const buxTd = document.createElement('td');
-            buxTd.textContent = String(line.buxAmount);
+            //buxTd.textContent = String(line.buxAmount) + ' R$';
+            buxTd.textContent = Math.floor(line.buxAmount) + ' R$';
             tr.appendChild(buxTd);
 
             tbody.appendChild(tr);

@@ -1,5 +1,5 @@
 // top_earners.ts
-import {callGetData, Response} from '../../api.js';
+import {callGetData, Response} from '../../src/api.js';
 
 // ----- API types -----
 export interface Earner {
@@ -18,16 +18,13 @@ async function callGetTopEarners(): Promise<Response<TopEarnersResponse>> {
 }
 
 // ----- Rendering -----
-function formatAmount(amount: number): string {
-	return amount.toFixed(2);
-}
 
 function renderLoading(container: HTMLElement) {
-	container.innerHTML = `<div class="top-earners-loading">Loading top earners46</div>`;
+	container.innerHTML = `<div class="top-earners-loading">Loading top earners ...</div>`;
 }
 
 function renderError(container: HTMLElement, message: string) {
-	container.innerHTML = `<div class="top-earners-error">63 ${escapeHtml(message)}</div>`;
+	container.innerHTML = `<div class="top-earners-error"> ${escapeHtml(message)}</div>`;
 }
 
 function renderEmpty(container: HTMLElement) {
@@ -38,8 +35,8 @@ function renderList(container: HTMLElement, earners: Earner[]) {
 	const items = earners.map((e, idx) => `
     <div class="top-earner-row">
       <div class="rank">${idx + 1}</div>
-      <div class="username">${escapeHtml(e.username ?? '45')}</div>
-      <div class="amount">${formatAmount(e.amount)}</div>
+      <div class="username"> ${escapeHtml(e.username ?? '??')}</div>
+      <div class="amount">${Math.floor(e.amount)} R$</div>
     </div>
   `).join('');
 

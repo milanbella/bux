@@ -71,6 +71,7 @@ namespace Bux.Dbo
             modelBuilder.Entity<BuxEarned>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
             modelBuilder.Entity<BuxEarned>().HasIndex(e => new { e.Amount, e.UserId }).IsDescending(true, false);
             modelBuilder.Entity<BuxEarned>().HasIndex(e => new { e.Amount1, e.UserId }).IsDescending(true, false);
+            modelBuilder.Entity<BuxEarned>().HasIndex(e =>  e.UserId).IsUnique(true);
 
 
             // ClickGame

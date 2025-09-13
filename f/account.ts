@@ -1,6 +1,6 @@
-import {callBrowserRegister, BrowserRegisterRequest, callGetReferralsCount} from './api.js';
-import {showMessage, clearMessage} from './ui.js';
-import {setRoBloxUser, updateTotalBux } from './header_footer.js';
+import {callBrowserRegister, BrowserRegisterRequest, callGetReferralsCount} from './src/api.js';
+import {showMessage, clearMessage} from './src/ui.js';
+import {setRoBloxUser, updateTotalBux } from './src/header_footer.js';
 
 
 document.addEventListener('DOMContentLoaded', async () => {

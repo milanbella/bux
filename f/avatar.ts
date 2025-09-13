@@ -1,5 +1,5 @@
-import { displayAavatar } from './header_footer.js';
-import { showMessage, clearMessage } from './ui.js';
+import { displayAavatar } from './src/header_footer.js';
+import { showMessage, clearMessage } from './src/ui.js';
 
 type Variants = Record<number, Blob>;
 
