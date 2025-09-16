@@ -8,8 +8,12 @@
 
     <link rel="stylesheet" href="css/index.css">
 
+    <!--
     <link rel="stylesheet" href="css/widgets/top_earners/top_earners.css">
 	<script type="module" src="widgets/top_earners/top_earners.js"></script>
+    -->
+    <link rel="stylesheet" href="css/widgets/last_redeemers/last_redeemers.css">
+	<script type="module" src="widgets/last_redeemers/last_redeemers.js"></script>
 
     <link rel="stylesheet" href="css/php/index_html/top_buttons_left.css">
     <link rel="stylesheet" href="css/php/index_html/top_buttons_right.css">
@@ -31,7 +35,8 @@
 
         <div class="main-content">
             <!--<img src="img/banner.png"></img>-->
-			<div id="top-earners"></div>
+			<!--<div id="top-earners"></div>-->
+            <div id="last-redeemers"></div>
 
 			<div class="top-buttons">
 				<?php

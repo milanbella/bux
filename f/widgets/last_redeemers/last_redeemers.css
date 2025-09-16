@@ -1,0 +1,89 @@
+/* Container */
+.last-redeemers {
+	background: #fff;
+	border-radius: 12px;
+	padding: 16px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	max-width: 100%;
+	overflow: hidden;
+}
+
+/* Title */
+.last-redeemers-title {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-bottom: 12px;
+	color: #333;
+	text-align: center;
+}
+
+/* Horizontal scrollable list */
+.last-redeemers-list {
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	overflow-x: auto;
+	padding-bottom: 8px;
+	scrollbar-width: thin;
+	/* Firefox */
+	scrollbar-color: #bbb #f5f5f5;
+	/* Firefox */
+}
+
+/* Scrollbar styling for WebKit */
+.last-redeemers-list::-webkit-scrollbar {
+	height: 8px;
+}
+
+.last-redeemers-list::-webkit-scrollbar-track {
+	background: #f5f5f5;
+	border-radius: 4px;
+}
+
+.last-redeemers-list::-webkit-scrollbar-thumb {
+	background: #bbb;
+	border-radius: 4px;
+}
+
+.last-redeemers-list::-webkit-scrollbar-thumb:hover {
+	background: #999;
+}
+
+/* Each redeemer card */
+.last-redeemer-row {
+	min-width: 160px;
+	background: #f9f9f9;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: center;
+	flex-shrink: 0;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.last-redeemer-row:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Rank, username, amount (scoped to this widget to avoid clashes) */
+.last-redeemers .rank {
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: #444;
+	margin-bottom: 6px;
+}
+
+.last-redeemers .username {
+	font-size: 0.95rem;
+	font-weight: 500;
+	color: #0077cc;
+	margin-bottom: 6px;
+	word-break: break-word;
+}
+
+.last-redeemers .amount {
+	font-size: 1rem;
+	font-weight: bold;
+	color: #28a745;
+}

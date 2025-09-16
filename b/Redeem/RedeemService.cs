@@ -77,7 +77,7 @@ namespace bux.Redeem
             // Only decrement if there is enough balance (Amount >= amt).
             var rows = await db.Database.ExecuteSqlInterpolatedAsync($@"
                 UPDATE BuxEarned
-                SET Amount1  = Amount1  - {amt},
+                SET Amount1  = Amount1  - {amt}
                 WHERE UserId = {userId}
                   AND Amount1 >= {amt};
             ");
@@ -100,10 +100,10 @@ namespace bux.Redeem
             await db.SaveChangesAsync();
         }
 
-        public record GetLastRedeemrs_Item(int UserId, string UserName, double ammountRedeemed, System.DateTime redeemedAt);
-        public async Task<List<GetLastRedeemrs_Item>> GetLastRedeemrs(int count = 10)
+        public record GetLastRedeemers_Item(int UserId, string UserName, double ammountRedeemed, System.DateTime redeemedAt);
+        public async Task<List<GetLastRedeemers_Item>> GetLastRedeemers(int count = 10)
         {
-            const string METHOD_NAME = nameof(GetLastRedeemrs);
+            const string METHOD_NAME = nameof(GetLastRedeemers);
 
             if (count <= 0) count = 10;
 
@@ -112,7 +112,7 @@ namespace bux.Redeem
                 .Include(r => r.User) // use navigation to fetch username
                 .OrderByDescending(r => r.RedeemedAt)
                 .Take(count)
-                .Select(r => new GetLastRedeemrs_Item(
+                .Select(r => new GetLastRedeemers_Item(
                     r.UserId ?? 0,
                     r.User != null ? (r.User.Name ?? string.Empty) : string.Empty,
                     r.Amount,
@@ -123,7 +123,7 @@ namespace bux.Redeem
             return items;
         }
 
-        public async Task RandomlyRedeemSomeUsers(int maxUsers = 5, double maxAmmount = 5.0)
+        public async Task RandomlyRedeemSomeUsers(int maxUsers = 5, double maxAmmount = 110)
         {
             const string METHOD_NAME = nameof(RandomlyRedeemSomeUsers);
 
@@ -140,9 +140,9 @@ namespace bux.Redeem
                 await using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT UserId, Amount
+                        SELECT UserId, Amount1
                         FROM BuxEarned
-                        WHERE Amount > 0
+                        WHERE Amount1 > 0
                         ORDER BY RAND()
                         LIMIT @limit;
                     ";
@@ -171,19 +171,19 @@ namespace bux.Redeem
                     try
                     {
                         var cap = Math.Min(maxAmmount, currentAmount);
-                        if (cap <= 0.0)
+                        if (cap <= 0)
                             continue;
 
                         // random double in [0.01, cap], rounded to 2 decimals
-                        var raw = 0.01 + (random.NextDouble() * Math.Max(0.0, cap - 0.01));
-                        var toRedeem = Math.Round(raw, 2, MidpointRounding.AwayFromZero);
+                        var raw = random.NextDouble() * cap;
+                        var toRedeem = Math.Floor(raw);
 
                         if (toRedeem <= 0.0)
                             continue;
 
-                        await RedeemAmmount(userId, (decimal)toRedeem);
+                        await RedeemAmmount1(userId, (double)toRedeem);
 
-                        Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): Redeemed {toRedeem:F2} from userId={userId} (balance before ~{currentAmount:F2}).");
+                        Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): Redeemed: {toRedeem} R$ from userId={userId} (balance before: {currentAmount} R$).");
                     }
                     catch (Exception ex)
                     {

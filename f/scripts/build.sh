@@ -7,6 +7,8 @@ npm run build
 cp -r css dist
 mkdir -p dist/css/widgets/top_earners
 cp widgets/top_earners/top_earners.css dist/css/widgets/top_earners
+mkdir -p dist/css/widgets/last_redeemers
+cp widgets/last_redeemers/last_redeemers.css dist/css/widgets/last_redeemers
 
 mkdir -p dist/css/php/index_html 
 cp php/index_html/top_buttons_left.css dist/css/php/index_html/top_buttons_left.css 
