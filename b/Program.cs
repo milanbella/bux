@@ -177,7 +177,8 @@ builder.Services.AddScoped<RedeemService>(provider =>
 builder.Services.AddHostedService<SimulatePlayingUsersService>(provider =>
 {
     MySqlDataSource dataSource = provider.GetService<MySqlDataSource>();
-    return new SimulatePlayingUsersService(dataSource);
+    IServiceScopeFactory scopes = provider.GetService<IServiceScopeFactory>();
+    return new SimulatePlayingUsersService(scopes, dataSource);
 });
 
 
