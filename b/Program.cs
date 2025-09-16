@@ -6,6 +6,7 @@ using Serilog;
 using Bux.Middleware;
 using Microsoft.AspNetCore.HttpOverrides;
 using Bux.Simulate;
+using bux.Redeem;
 
 if (false)
 {
@@ -163,6 +164,14 @@ builder.Services.AddScoped<Bux.Auth.ApiKeyService>(provider =>
 {
     MySqlDataSource dataSource = provider.GetService<MySqlDataSource>();
     return new Bux.Auth.ApiKeyService(dataSource);
+});
+
+
+builder.Services.AddScoped<RedeemService>(provider =>
+{
+    Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
+    MySqlDataSource dataSource = provider.GetService<MySqlDataSource>();
+    return new RedeemService(db, dataSource);
 });
 
 builder.Services.AddHostedService<SimulatePlayingUsersService>(provider =>

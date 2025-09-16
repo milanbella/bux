@@ -24,6 +24,7 @@ namespace Bux.Dbo
         public DbSet<SessionUser> SessionUser => Set<SessionUser>();
 
         public DbSet<BuxEarned> BuxEarned => Set<BuxEarned>();
+        public DbSet<BuxRedeemed> BuxRedeemed => Set<BuxRedeemed>();
         public DbSet<ClickGame> ClickGame => Set<ClickGame>();
         public DbSet<GuessGame> GuessGame => Set<GuessGame>();
         public DbSet<Avatar> Avatar => Set<Avatar>();
@@ -72,6 +73,10 @@ namespace Bux.Dbo
             modelBuilder.Entity<BuxEarned>().HasIndex(e => new { e.Amount, e.UserId }).IsDescending(true, false);
             modelBuilder.Entity<BuxEarned>().HasIndex(e => new { e.Amount1, e.UserId }).IsDescending(true, false);
             modelBuilder.Entity<BuxEarned>().HasIndex(e =>  e.UserId).IsUnique(true);
+
+            // BuxRedeemed
+            modelBuilder.Entity<BuxRedeemed>().HasKey(e => e.Id);
+            modelBuilder.Entity<BuxRedeemed>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
 
             // ClickGame

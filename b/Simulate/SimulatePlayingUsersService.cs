@@ -2,6 +2,7 @@
 using Org.BouncyCastle.Bcpg;
 using Serilog;
 using Bux.Controllers.Model.Api1.EarnersController;
+using bux.Redeem;
 
 namespace Bux.Simulate
 {
@@ -11,10 +12,12 @@ namespace Bux.Simulate
 
         private MySqlDataSource dataSource;
         private readonly Random random = new Random();
+        private readonly RedeemService redeemService;
 
         public SimulatePlayingUsersService(MySqlDataSource dataSource)
         {
             this.dataSource = dataSource;
+            this.redeemService = redeemService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken ct)
@@ -41,6 +44,8 @@ namespace Bux.Simulate
                 // wait 5 minutes before running again
                 //await Task.Delay(TimeSpan.FromMinutes(5), ct);
                 await Task.Delay(TimeSpan.FromSeconds(5), ct);
+
+                await redeemService.RandomlyRedeemSomeUsers();
             }
         }
 
@@ -172,6 +177,82 @@ namespace Bux.Simulate
             {
                 Log.Error(ex, $"{CLASS_NAME}:{METHOD_NAME}() Failed to read top earners.");
                 throw;
+            }
+        }
+
+        public async Task RandomlyRedeemSomeUsers(int maxUsers = 5, double maxAmmount = 5.0)
+        {
+            const string METHOD_NAME = nameof(RandomlyRedeemSomeUsers);
+
+            if (maxUsers <= 0) maxUsers = 5;
+            if (maxAmmount <= 0) maxAmmount = 5.0;
+
+            try
+            {
+                // 1) Pick random candidates directly in MySQL for performance.
+                //    We fetch UserId + current Amount so we can clamp the random redemption.
+                var candidates = new List<(int UserId, double Amount)>();
+
+                await using (var conn = await dataSource.OpenConnectionAsync())
+                await using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT UserId, Amount
+                        FROM BuxEarned
+                        WHERE Amount > 0
+                        ORDER BY RAND()
+                        LIMIT @limit;
+                    ";
+                    cmd.Parameters.AddWithValue("@limit", maxUsers);
+
+                    await using var reader = await cmd.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        var userId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                        var amount = reader.IsDBNull(1) ? 0.0 : reader.GetDouble(1);
+                        if (userId > 0 && amount > 0.0)
+                            candidates.Add((userId, amount));
+                    }
+                }
+
+                if (candidates.Count == 0)
+                {
+                    Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): No users with positive balance found.");
+                    return;
+                }
+                Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): redeeming {candidates.Count} users ...");
+
+                // 2) For each candidate, redeem a random amount up to their available balance (and maxAmmount).
+                foreach (var (userId, currentAmount) in candidates)
+                {
+                    try
+                    {
+                        var cap = Math.Min(maxAmmount, currentAmount);
+                        if (cap <= 0.0)
+                            continue;
+
+                        // random double in [0.01, cap], rounded to 2 decimals
+                        var raw = 0.01 + (random.NextDouble() * Math.Max(0.0, cap - 0.01));
+                        var toRedeem = Math.Round(raw, 2, MidpointRounding.AwayFromZero);
+
+                        if (toRedeem <= 0.0)
+                            continue;
+
+                        await RedeemAmmount(userId, (decimal)toRedeem);
+
+                        Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): Redeemed {toRedeem:F2} from userId={userId} (balance before ~{currentAmount:F2}).");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Continue with other users even if one fails.
+                        Log.Error(ex, $"{CLASS_NAME}:{METHOD_NAME}(): Failed redeem for userId={userId}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, $"{CLASS_NAME}:{METHOD_NAME}(): Unexpected error.");
+                throw; // rethrow to let caller handle if needed
             }
         }
 
