@@ -41,10 +41,17 @@ async function loadLeaderboard(): Promise<void> {
             }
             tr.appendChild(avatarTd)
 
+            /*
             const buxTd = document.createElement('td');
             //buxTd.textContent = String(line.buxAmount) + ' R$';
             buxTd.textContent = Math.floor(line.buxAmount) + ' R$';
             tr.appendChild(buxTd);
+            */
+
+            const buxTd = document.createElement('td');
+            const amount = Math.floor(line.buxAmount);
+            buxTd.innerHTML = `<span class="bux-pill">${amount.toLocaleString()} R$</span>`;
+            tr.appendChild(buxTd)
 
             tbody.appendChild(tr);
         });

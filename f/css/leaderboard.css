@@ -1,16 +1,124 @@
-.leaderboard-table {
-    width: 100%;
-    border-collapse: collapse;
+/* leaderboard.css — simple, clean, no dents */
+
+:root{
+  --accent:#2e7d32;
+  --accent-contrast:#fff;
+  --surface:#ffffff;
+  --surface-2:#f7faf7;
+  --border:#e6e8eb;
+  --border-2:#d9dde2;
+  --text:#1b1f24;
+  --muted:#6b7280;
+  --radius:14px;
+  --shadow:0 10px 28px rgba(0,0,0,.10);
+
+  /* solid tints for top-3 */
+  --gold-bg:#fff6db;
+  --silver-bg:#f5f7fa;
+  --bronze-bg:#ffefe2;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --surface:#121417; --surface-2:#0f1310;
+    --border:#2a2e33; --border-2:#343a42;
+    --text:#e7eaee; --muted:#a6aeb9;
+    --shadow:0 16px 44px rgba(0,0,0,.55);
+
+    --gold-bg:color-mix(in srgb,#d4af37 18%, var(--surface));
+    --silver-bg:color-mix(in srgb,#c0c0c0 16%, var(--surface));
+    --bronze-bg:color-mix(in srgb,#cd7f32 16%, var(--surface));
+  }
 }
 
+/* page container */
+main{
+  max-width:960px; margin:0 auto; padding:2rem 1rem 3rem; display:grid; gap:1rem;
+}
+main>h3{ margin:0; color:var(--text); font-size:clamp(1.25rem,1rem + .9vw,1.8rem); }
+
+/* table card (collapsed borders, no gaps = no dents) */
+.leaderboard-table{
+  width:100%;
+  border-collapse:collapse;          /* <— key */
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  font-variant-numeric:tabular-nums;
+}
+
+/* sticky header */
+.leaderboard-table thead th{
+  position:sticky; top:0; z-index:1;
+  background:var(--surface);
+  color:var(--muted);
+  text-transform:uppercase; letter-spacing:.06em;
+  font-size:.8rem; font-weight:800;
+  padding:.9rem 1rem;
+  border-bottom:1px solid var(--border);
+}
+
+/* cells */
 .leaderboard-table th,
-.leaderboard-table td {
-    padding: 0.5rem;
-    border-bottom: 1px solid #ccc;
-    text-align: left;
+.leaderboard-table td{
+  padding:1rem 1rem;
+  color:var(--text);
+  border-bottom:1px solid var(--border);
 }
 
-.my-place {
-    margin-top: 1rem;
-    font-weight: bold;
+/* columns */
+.leaderboard-table th:first-child,
+.leaderboard-table td:first-child{ text-align:center; width:78px; white-space:nowrap; }
+.leaderboard-table th:nth-child(2),
+.leaderboard-table td:nth-child(2){ text-align:left; }
+.leaderboard-table th:nth-child(3),
+.leaderboard-table td:nth-child(3){ text-align:center; width:78px; }
+.leaderboard-table th:nth-child(4),
+.leaderboard-table td:nth-child(4){ text-align:right; white-space:nowrap; }
+
+/* zebra & hover */
+.leaderboard-table tbody tr:nth-child(even){ background:var(--surface-2); }
+.leaderboard-table tbody tr:hover{ filter:brightness(.99); }
+
+/* top-3: solid full-row tint (no gradients, no rounded corners) */
+.leaderboard-table tbody tr:nth-child(1){ background:var(--gold-bg); }
+.leaderboard-table tbody tr:nth-child(2){ background:var(--silver-bg); }
+.leaderboard-table tbody tr:nth-child(3){ background:var(--bronze-bg); }
+
+/* rank + medals */
+.leaderboard-table td:first-child{
+  font-weight:800; letter-spacing:.02em;
 }
+.leaderboard-table tbody tr:nth-child(1) td:first-child::before{ content:"\01F947\00A0"; } /* 🥇 */
+.leaderboard-table tbody tr:nth-child(2) td:first-child::before{ content:"\01F948\00A0"; } /* 🥈 */
+.leaderboard-table tbody tr:nth-child(3) td:first-child::before{ content:"\01F949\00A0"; } /* 🥉 */
+
+/* avatar (if any) */
+.leaderboard-table td:nth-child(3) img{
+  width:42px; height:42px; border-radius:50%; object-fit:cover;
+  border:1px solid var(--border-2);
+  display:inline-block;
+}
+
+/* Bux pill (your TS wraps number inside .bux-pill) */
+.leaderboard-table td:nth-child(4){ font-feature-settings:"tnum" 1, "lnum" 1; letter-spacing:.02em; }
+.leaderboard-table td:nth-child(4) .bux-pill{
+  display:inline-block; padding:.38rem .7rem; border-radius:999px;
+  background:color-mix(in srgb, var(--accent) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+  font-weight:800;
+}
+
+/* “My place” chip */
+.my-place{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.55rem .85rem; font-weight:800; color:var(--text);
+  background:var(--surface);
+  border:1px solid var(--border); border-left:5px solid var(--accent);
+  border-radius:999px; box-shadow:var(--shadow);
+}
+.my-place::before{ content:"\01F4CD\00A0"; } /* 📍 + NBSP */
+
+/* loading row */
+.leaderboard-table tbody td[colspan]{ text-align:center !important; color:var(--muted); }
