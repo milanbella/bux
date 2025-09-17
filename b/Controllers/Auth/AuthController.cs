@@ -213,6 +213,16 @@ namespace Bux.Controllers.Auth
                 db.SessionUser.Add(sessionUser);
                 await db.SaveChangesAsync();
 
+                // This user has logged in first time. Clear faked bux eraned Ammount1 in case this user was faked.
+                var fakedUserBux = await db.BuxEarned.FirstOrDefaultAsync(b => b.UserId == user.Id);
+                if (fakedUserBux != null)
+                {
+                    fakedUserBux.Amount1 = 0;
+                    db.BuxEarned.Update(fakedUserBux);
+                    await db.SaveChangesAsync();
+                }
+
+
                 await transaction.CommitAsync();
                 return await Task.FromResult(Ok(new BrowserRegisterResponse(
                     username: user.Name,

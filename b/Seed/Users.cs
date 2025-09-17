@@ -962,7 +962,7 @@ namespace Bux.Seed
                 */
                 ammount = i;
                 modelBuilder.Entity<Bux.Dbo.Model.BuxEarned>().HasData(
-                    new Bux.Dbo.Model.BuxEarned { Id = i, UserId = i, Amount = ammount }
+                    new Bux.Dbo.Model.BuxEarned { Id = i, UserId = i, Amount1 = ammount }
                 );
                 ++i;
             }
