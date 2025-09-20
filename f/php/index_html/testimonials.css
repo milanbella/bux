@@ -1,6 +1,7 @@
 .testimonials {
 	width: 100%;
 	padding: 0 32px 32px 32px;
+    box-sizing: border-box;
 }
 
 .testimonials h2 {

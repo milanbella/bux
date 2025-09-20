@@ -42,10 +42,12 @@ function renderList(container: HTMLElement, redeemers: LastRedeemerDto[]) {
 
 	container.innerHTML = `
     <div id="last-redeemers-widget" class="last-redeemers">
-      <h3 class="last-redeemers-title">Last Redeemers</h3>
-      <div class="last-redeemers-list">
-        ${items}
-      </div>
+        <h3 class="last-redeemers-title">Last Redeemers</h3>
+        <div class="last-redeemers-container">
+            <div class="last-redeemers-list">
+              ${items}
+            </div>
+        </div>
     </div>
   `;
 }

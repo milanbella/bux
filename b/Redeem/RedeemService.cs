@@ -75,6 +75,7 @@ namespace bux.Redeem
 
             // Do the deduction atomically to avoid races:
             // Only decrement if there is enough balance (Amount >= amt).
+            /*
             var rows = await db.Database.ExecuteSqlInterpolatedAsync($@"
                 UPDATE BuxEarned
                 SET Amount1  = Amount1  - {amt}
@@ -87,6 +88,7 @@ namespace bux.Redeem
                 Log.Error($"{CLASS_NAME}:{METHOD_NAME}(): Insufficient balance or user not found for userId={userId}, amount={amt}");
                 throw new InvalidOperationException("Insufficient balance or user not found.");
             }
+            */
 
             // Record the redemption
             var redeemed = new BuxRedeemed
@@ -123,26 +125,30 @@ namespace bux.Redeem
             return items;
         }
 
-        public async Task RandomlyRedeemSomeUsers(int maxUsers = 5, double maxAmmount = 110)
+        private double getRandomRedeemAmount(double maxAmmount = 110)
+        {
+            var raw = random.NextDouble() * maxAmmount;
+            var toRedeem = Math.Floor(raw);
+            return toRedeem;
+        }
+
+        public async Task RandomlyRedeemSomeUsers()
         {
             const string METHOD_NAME = nameof(RandomlyRedeemSomeUsers);
 
-            if (maxUsers <= 0) maxUsers = 5;
-            if (maxAmmount <= 0) maxAmmount = 5.0;
+            int maxUsers = 15;
+            double maxAmmount = 110;
 
             try
             {
-                // 1) Pick random candidates directly in MySQL for performance.
-                //    We fetch UserId + current Amount so we can clamp the random redemption.
-                var candidates = new List<(int UserId, double Amount)>();
+                var candidates = new List<int>();
 
                 await using (var conn = await dataSource.OpenConnectionAsync())
                 await using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT UserId, Amount1
+                        SELECT UserId
                         FROM BuxEarned
-                        WHERE Amount1 > 0
                         ORDER BY RAND()
                         LIMIT @limit;
                     ";
@@ -152,9 +158,11 @@ namespace bux.Redeem
                     while (await reader.ReadAsync())
                     {
                         var userId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
-                        var amount = reader.IsDBNull(1) ? 0.0 : reader.GetDouble(1);
-                        if (userId > 0 && amount > 0.0)
-                            candidates.Add((userId, amount));
+                        if (userId <= 0)
+                        {
+                            continue;
+                        }
+                        candidates.Add(userId);
                     }
                 }
 
@@ -165,25 +173,32 @@ namespace bux.Redeem
                 }
                 Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): redeeming {candidates.Count} users ...");
 
-                // 2) For each candidate, redeem a random amount up to their available balance (and maxAmmount).
-                foreach (var (userId, currentAmount) in candidates)
+                int i = 1;
+                foreach (var userId in candidates)
                 {
                     try
                     {
-                        var cap = Math.Min(maxAmmount, currentAmount);
-                        if (cap <= 0)
-                            continue;
+                        int toRedeem = 0;
+                        if (i >= 1 && i <= 1)
+                        {
+                            toRedeem = (int)getRandomRedeemAmount(110);
 
-                        // random double in [0.01, cap], rounded to 2 decimals
-                        var raw = random.NextDouble() * cap;
-                        var toRedeem = Math.Floor(raw);
-
+                        }
+                        else if (i >= 2 && i <= 11)
+                        {
+                            toRedeem = (int)getRandomRedeemAmount(15);
+                        }
+                        else if (i >= 12)
+                        {
+                            toRedeem = (int)getRandomRedeemAmount(7);
+                        }
                         if (toRedeem <= 0.0)
                             continue;
 
                         await RedeemAmmount1(userId, (double)toRedeem);
 
-                        Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): Redeemed: {toRedeem} R$ from userId={userId} (balance before: {currentAmount} R$).");
+                        Log.Information($"{CLASS_NAME}:{METHOD_NAME}(): Redeemed: {toRedeem} R$ from userId={userId}");
+                        ++i;
                     }
                     catch (Exception ex)
                     {

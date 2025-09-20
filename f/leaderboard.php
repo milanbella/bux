@@ -18,13 +18,14 @@
 
     <main>
         <h3>Leaderboard</h3>
+        <div id="my-place" class="my-place"></div>
         <table id="leaderboard-table" class="leaderboard-table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>User</th>
                     <th></th>
-                    <th>Bux</th>
+                    <th>R$</th>
                 </tr>
             </thead>
             <tbody id="leaderboard-body">
@@ -33,7 +34,6 @@
                 </tr>
             </tbody>
         </table>
-        <div id="my-place" class="my-place"></div>
     </main>
 
     <footer>

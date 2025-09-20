@@ -1,11 +1,15 @@
 /* Container */
 .last-redeemers {
+    margin-top: 8px;
+}
+
+.last-redeemers-container {
 	background: #fff;
 	border-radius: 12px;
-	padding: 16px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	max-width: 100%;
 	overflow: hidden;
+    margin-top: 8px;
 }
 
 /* Title */
@@ -23,7 +27,7 @@
 	flex-direction: row;
 	gap: 12px;
 	overflow-x: auto;
-	padding-bottom: 8px;
+	padding: 7px;
 	scrollbar-width: thin;
 	/* Firefox */
 	scrollbar-color: #bbb #f5f5f5;

@@ -1,16 +1,17 @@
         <nav class="header-container">
-            <span class="header-left">
+            <div class="header-left">
+            <img src="img/r_dollar_70px.png"></img>
             <a href="index.html"><i class="fa-solid fa-house"></i> <span class="menu-item"> Home </span> </a>
             <a href="leaderboard.html"><i class="fa-solid fa-trophy"></i> <span class="menu-item"> Leaderboard </span> </a>
             <!--<a href="offers.html"><i class="fa-solid fa-gift"></i> <span class="menu-item"> Offers </span> </a>-->
             <a href="withdraw.html"><i class="fa-solid fa-hand-holding-dollar"></i> <span class="menu-item"> Withdraw </span> <span id="header-total-bux" class="menu-item"></span></a>
-            </span>
+            </div>
 
-            <span class="header-right">
+            <div class="header-right">
 			<!--
             <a href="account.html"><i class="fa-solid fa-user-gear"></i> <span class="menu-item"> Account </span> </a>
             <span><i class="fa-solid fa-user"></i> <span id="header-user-name" class="menu-item"> Player123 </span> </span>
 			-->
-            <a href="account.html"><span id="avatar-image-container"> <i class="fa-solid fa-user"></i></span> <span id="header-user-name" class="menu-item"> </span>  </a>
-            </span>
+            <a href="account.html" class="header-user-link"><span id="avatar-image-container"> <i class="fa-solid fa-user"></i></span> <span id="header-user-name" class="menu-item"> </span>  </a>
+            </div>
         </nav>

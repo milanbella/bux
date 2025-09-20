@@ -33,7 +33,7 @@ namespace Bux.Controllers.Api1
             const string METHOD_NAME = nameof(GetTopEarners);
             try 
             {
-                var earners = await SimulatePlayingUsersService.ReadTopEarnersByAmmount(dataSource, 10);
+                var earners = await SimulateAmountService.ReadTopEarnersByAmmount(dataSource, 10);
                 return Ok(new TopEarnersResponse(earners));
             }
             catch (Exception ex)

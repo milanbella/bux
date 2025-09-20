@@ -43,7 +43,7 @@
 
 		<div id="referral-container" class="referral-container">
 			<span id="referral-link" class="referral-link">https://example.com/ref?code=ABC123</span>
-			<button id="referral-copy-btn" class="referral-button">Copy</button>
+			<button id="referral-copy-btn" ">Copy</button>
 		</div>
 
 	</main>

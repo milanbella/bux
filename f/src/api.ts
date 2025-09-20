@@ -55,10 +55,14 @@ function set401() {
 	const link = document.createElement('a');
 	link.id = 'link-to-account-page'
 	link.href = 'account.html';
-	link.textContent = 'Please set your name.';
+	link.textContent = 'Please set first your roblox name by clicking to this link.';
+
+	const container = document.createElement('div');
+	container.id = 'link-to-account-page-container';
+    container.appendChild(link);
 
 	// append the anchor to <main>
-	main.appendChild(link);
+	main.appendChild(container);
 }
 
 export async function callGetData<T>(url: string): Promise<Response<T>> {

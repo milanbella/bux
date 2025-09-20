@@ -3,24 +3,24 @@ import { showMessage, clearMessage } from './src/ui.js';
 
 type Variants = Record<number, Blob>;
 
-const formElement = document.getElementById('avatar-form') as HTMLFormElement | null; 
-const input = document.getElementById('avatar-input') as HTMLInputElement | null;
-const uploadBtn = document.getElementById('upload-btn') as HTMLButtonElement | null;
-const preview = document.getElementById('preview') as HTMLDivElement | null;
+const avatarButtonsContainerElement = document.getElementById('avatar-buttons-container') as HTMLFormElement | null; 
+const avatarInputElement = document.getElementById('avatar-input') as HTMLInputElement | null;
+const uploadBtnElement = document.getElementById('upload-btn') as HTMLButtonElement | null;
+const previewElement = document.getElementById('preview') as HTMLDivElement | null;
 
-if (!formElement) {
-	throw new Error('missin avatar-form DOM element');
+if (!avatarButtonsContainerElement) {
+	throw new Error('missin avatar-buttons-container DOM element');
 }
 
-if (!input) {
+if (!avatarInputElement) {
 	throw new Error('missin avatar-input DOM element');
 }
 
-if (!uploadBtn) {
+if (!uploadBtnElement) {
 	throw new Error('missin upload-btn DOM element');
 }
 
-if (!preview) {
+if (!previewElement) {
 	throw new Error('missin preview DOM element');
 }
 
@@ -33,11 +33,11 @@ const SIZES = [256, 128, 64] as const;
 
 let blobsBySize: Variants | null = null;
 
-input.addEventListener('change', async () => {
-	const file = input.files?.[0] ?? null;
+avatarInputElement.addEventListener('change', async () => {
+	const file = avatarInputElement.files?.[0] ?? null;
 	blobsBySize = null;
-	preview.innerHTML = '';
-	uploadBtn.disabled = true;
+	previewElement.innerHTML = '';
+	uploadBtnElement.disabled = true;
 
 	if (!file) {
 		console.warn('no file selected');
@@ -68,16 +68,16 @@ input.addEventListener('change', async () => {
 		img.height = 128;
 		img.style.borderRadius = '50%';
 		img.onload = () => URL.revokeObjectURL(url);
-		preview.appendChild(img);
+		previewElement.appendChild(img);
 
-		uploadBtn.disabled = false;
+		uploadBtnElement.disabled = false;
 	} catch (e) {
 		console.error(e);
 		alert('Failed to process image.');
 	}
 });
 
-uploadBtn.addEventListener('click', async () => {
+uploadBtnElement.addEventListener('click', async () => {
 	if (!blobsBySize) return;
 
 	const form = new FormData();
@@ -95,7 +95,8 @@ uploadBtn.addEventListener('click', async () => {
 	console.log('Uploaded:', json);
     displayAavatar();
     showMessage('info', 'avatar successfully uploaded');
-    formElement.remove();
+    avatarButtonsContainerElement.remove();
+    previewElement.style.marginTop='30px';
 });
 
 /**

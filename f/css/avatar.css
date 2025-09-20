@@ -1,0 +1,48 @@
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar-buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 30px;
+}
+
+.avatar-preview-container {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-message-container {
+    display: flex;
+    justify-content: center;
+}
+
+.file-button {
+  align-self: end;
+  padding: .8rem 1.1rem;
+  border: 0;
+  border-radius: 10px;
+  background: #265a81;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .15s, transform .02s;
+  display: inline-block; /* makes label behave like button */
+}
+
+.file-button:hover {
+  filter: brightness(1.1);
+}
+
+.file-button:active {
+  transform: scale(0.98);
+}
+
+#preview {
+    margin-top: 10px;
+}
+

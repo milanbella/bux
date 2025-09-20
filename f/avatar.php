@@ -17,15 +17,26 @@
     </header>
 
     <main>
-		<form id="avatar-form">
-			<input id="avatar-input" type="file"></input>
-			<button id="upload-btn" type="button"> Save </button>
 
-			<div id="preview"></div>
-		</form>
+        <div class="avatar-container">
+            <form id="avatar-form">
+                <div id="avatar-buttons-container" class="avatar-buttons-container">
+                        <input id="avatar-input" type="file" hidden>
+                        <label for="avatar-input" class="file-button">Choose Avatar</label>
+
+                        <button id="upload-btn" type="button"> Save </button>
+                </div>
+            </form>
+
+            <div class="avatar-preview-container">
+                <div id="preview"></div>
+            </div>
 
 
-		<div id="message"></div>
+            <div class="avatar-message-container">
+                <div id="message"></div>
+            </div>
+        </div>
 
     </main>
 

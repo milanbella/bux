@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Stripe.V2;
 
 namespace Bux.Seed
 {
@@ -950,20 +951,134 @@ namespace Bux.Seed
                 modelBuilder.Entity<Bux.Dbo.Model.User>().HasData(
                     new Bux.Dbo.Model.User { Id = i, Name = userName }
                 );
-                /*
-                if (i < 100) 
+
+                if (i == 1)
                 {
-                    ammount = GetRandom(110,321);
-                } 
-                else
-                {
-                    ammount = GetRandom(1, 120);
+                    ammount = 1023;
                 }
-                */
-                ammount = i;
+                else if (i == 2)
+                {
+                    ammount = 931;
+                }
+                else if (i == 3)
+                {
+                    ammount = 890;
+                }
+                else if (i == 4)
+                {
+                    ammount = 471;
+                }
+                else if (i == 5)
+                {
+                    ammount = 501;
+                }
+                else if (i == 6)
+                {
+                    ammount = 107;
+                }
+                else if (i == 7)
+                {
+                    ammount = 156;
+                }
+                else if (i == 8)
+                {
+                    ammount = 237;
+                }
+                else if (i == 9)
+                {
+                    ammount = 908;
+                }
+                else if (i == 10)
+                {
+                    ammount = 982;
+                }
+                else if (i == 11)
+                {
+                    ammount = 25;
+                }
+                else if (i == 12)
+                {
+                    ammount = 93;
+                }
+                else if (i == 13)
+                {
+                    ammount = 403;
+                }
+                else if (i == 14)
+                {
+                    ammount = 73;
+                }
+                else if (i == 15)
+                {
+                    ammount = 782;
+                }
+                else if (i == 16)
+                {
+                    ammount = 982;
+                }
+                else if (i == 17)
+                {
+                    ammount = 642;
+                }
+                else if (i == 18)
+                {
+                    ammount = 375;
+                }
+                else if (i == 19)
+                {
+                    ammount = 57;
+                }
+                else if (i == 20)
+                {
+                    ammount = 37;
+                }
+                else if (i == 21)
+                {
+                    ammount = 21;
+                }
+                else if (i == 22)
+                {
+                    ammount = 123;
+                }
+                else if (i == 23)
+                {
+                    ammount = 799;
+                }
+                else if (i == 24)
+                {
+                    ammount = 97;
+                }
+                else if (i == 25)
+                {
+                    ammount = 231;
+                }
+                else if (i == 26)
+                {
+                    ammount = 323;
+                }
+                else if (i == 27)
+                {
+                    ammount = 496;
+                }
+                else if (i == 29)
+                {
+                    ammount = 423;
+                }
+                else if (i == 30)
+                {
+                    ammount = 91;
+                }
+                else if (i == 31)
+                {
+                    ammount = 337;
+                } else                 {
+                    ammount = 0;
+                }
+
+                Console.WriteLine($"i: {i}, ammount: {ammount}");
                 modelBuilder.Entity<Bux.Dbo.Model.BuxEarned>().HasData(
-                    new Bux.Dbo.Model.BuxEarned { Id = i, UserId = i, Amount1 = ammount }
-                );
+                        new Bux.Dbo.Model.BuxEarned { Id = i, UserId = i, Amount1 = ammount }
+                    );
                 ++i;
             }
         }

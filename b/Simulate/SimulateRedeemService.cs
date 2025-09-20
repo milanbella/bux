@@ -6,15 +6,15 @@ using bux.Redeem;
 
 namespace Bux.Simulate
 {
-    public class SimulatePlayingUsersService : BackgroundService
+    public class SimulateRedeemService : BackgroundService
     {
-        public static string CLASS_NAME = typeof(SimulatePlayingUsersService).Name;
+        public static string CLASS_NAME = typeof(SimulateRedeemService).Name;
 
         private MySqlDataSource dataSource;
         private readonly Random random = new Random();
         private readonly IServiceScopeFactory scopes;
 
-        public SimulatePlayingUsersService(IServiceScopeFactory scopes, MySqlDataSource dataSource)
+        public SimulateRedeemService(IServiceScopeFactory scopes, MySqlDataSource dataSource)
         {
             this.dataSource = dataSource;
             this.scopes = scopes;
@@ -34,8 +34,7 @@ namespace Bux.Simulate
                 {
                     Log.Information($"{CLASS_NAME}:{METHOD_NAME}() Background task started at: {DateTimeOffset.Now}");
 
-                    // 🔹 Do your async work here
-                    await IncrementAmount1RandomlyAsync(ct);
+                    await redeemService.RandomlyRedeemSomeUsers();
 
                     Log.Information($"{CLASS_NAME}:{METHOD_NAME}() Background task finished at: {DateTimeOffset.Now}");
                 }
@@ -44,14 +43,12 @@ namespace Bux.Simulate
                     Log.Error(ex, $"{CLASS_NAME}:{METHOD_NAME}() Error while running background task");
                 }
 
-                // wait 5 minutes before running again
-                //await Task.Delay(TimeSpan.FromMinutes(5), ct);
-                await Task.Delay(TimeSpan.FromSeconds(5), ct);
 
-                await redeemService.RandomlyRedeemSomeUsers();
+                await Task.Delay(TimeSpan.FromMinutes(5), ct);
             }
         }
 
+        /*
         private async Task IncrementAmount1RandomlyAsync(CancellationToken ct)
         {
             const string METHOD_NAME = nameof(IncrementAmount1RandomlyAsync);
@@ -63,7 +60,7 @@ namespace Bux.Simulate
                 // 1) Read all IDs
                 var ids = new List<int>();
                 // user.CreatedAt IS NULL means user is fake/simulated
-                await using (var selectCmd = new MySqlCommand("SELECT u.Id as userId FROM BuxEarned b LEFT JOIN User u ON b.UserId = u.Id WHERE u.CreatedAt IS NULL ", conn))
+                await using (var selectCmd = new MySqlCommand("SELECT u.Id as userId FROM BuxEarned b LEFT JOIN User u ON b.UserId = u.Id WHERE u.CreatedAt IS NULL AND b.Amount1 > 0", conn))
                 {
                     await using var reader = await selectCmd.ExecuteReaderAsync(ct);
                     while (await reader.ReadAsync(ct))
@@ -92,7 +89,7 @@ namespace Bux.Simulate
 
                 foreach (var id in ids)
                 {
-                    int n = random.Next(0, 4);
+                    int n = random.Next(0, 3);
                     double delta = n;
 
                     deltaParam.Value = delta;
@@ -109,8 +106,10 @@ namespace Bux.Simulate
                 throw;
             }
         }
+        */
 
 
+        /*
         public static async Task<List<Earner>> ReadTopEarnersByAmmount(MySqlDataSource dataSource, int limit)
         {
             const string METHOD_NAME = nameof(ReadTopEarnersByAmmount);
@@ -182,6 +181,7 @@ namespace Bux.Simulate
                 throw;
             }
         }
+        */
 
 
     }

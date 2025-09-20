@@ -82,9 +82,11 @@ main>h3{ margin:0; color:var(--text); font-size:clamp(1.25rem,1rem + .9vw,1.8rem
 .leaderboard-table tbody tr:hover{ filter:brightness(.99); }
 
 /* top-3: solid full-row tint (no gradients, no rounded corners) */
+/*
 .leaderboard-table tbody tr:nth-child(1){ background:var(--gold-bg); }
 .leaderboard-table tbody tr:nth-child(2){ background:var(--silver-bg); }
 .leaderboard-table tbody tr:nth-child(3){ background:var(--bronze-bg); }
+*/
 
 /* rank + medals */
 .leaderboard-table td:first-child{

@@ -17,6 +17,7 @@ cp php/index_html/survey_frame.css dist/css/php/index_html/survey_frame.css
 cp php/index_html/testimonials.css dist/css/php/index_html/testimonials.css 
 
 cp -r img dist
+cp favicon.ico dist
 
 php index.php > dist/index.html
 php account.php > dist/account.html

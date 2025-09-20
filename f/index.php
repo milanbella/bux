@@ -61,6 +61,7 @@
         include 'php/footer.php'
         ?>
     </footer>
+	<script type="module" src="index.js"></script>
 </body>
 
 </html>
