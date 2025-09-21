@@ -1075,7 +1075,6 @@ namespace Bux.Seed
                     ammount = 0;
                 }
 
-                Console.WriteLine($"i: {i}, ammount: {ammount}");
                 modelBuilder.Entity<Bux.Dbo.Model.BuxEarned>().HasData(
                         new Bux.Dbo.Model.BuxEarned { Id = i, UserId = i, Amount1 = ammount }
                     );

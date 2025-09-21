@@ -43,6 +43,14 @@ def deploy_ondrej_back_to_test(c, branch: str):
     dotnet ef migrations add InitialCreate
     dotnet ef database update
 
+    if [ ! -d "/var/earnobux" ]; then
+        mkdir /var/earnobux
+    fi
+    if [ ! -d "/var/earnobux/files" ]; then
+        mkdir /var/earnobux/files
+        chown ondrej:ondrej /var/earnobux/files
+    fi
+
     echo "INFO: starting ondrej_back service"
     systemctl start ondrej_back
     '''
