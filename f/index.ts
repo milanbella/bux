@@ -1,7 +1,8 @@
-import { callPostData } from './src/api.js'
+//import { callPostData } from './src/api.js'
 
-const FILE = "index.ts"
+//const FILE = "index.ts"
 
+/*
 async function handleDiscordClick() 
 {
     const FUNCTION = "handleDiscordClick()"
@@ -31,3 +32,4 @@ async function handleDiscordClick()
 document.addEventListener("DOMContentLoaded", function () {
     handleDiscordClick();
 });
+*/
