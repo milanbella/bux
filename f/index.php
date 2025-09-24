@@ -38,6 +38,9 @@
 			<!--<div id="top-earners"></div>-->
             <div id="last-redeemers"></div>
 
+            <div class="earn-bux-text-container">
+                <b> Earn R$ by completing offers </b> 
+            </div>
 			<div class="top-buttons">
 				<?php
 				include 'php/index_html/top_buttons_left.php'

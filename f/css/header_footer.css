@@ -96,9 +96,41 @@ footer nav {
 	margin-left: 15px;
 }
 
+/*
 .menu-item {
 	margin-left: 2px;
 }
+*/
+
+.menu-item {
+  position: relative;
+  display: inline-block;
+  padding: 5px 10px;
+  font-weight: 600;
+  color: #265a81;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #265a81;
+  transition: width 0.3s ease;
+}
+
+.menu-item:hover {
+  color: #1b3e5a; /* slightly darker on hover */
+}
+
+.menu-item:hover::after {
+  width: 100%; /* underline slides in */
+}
+
 
 /* 2. Base “message” class */
 .message {

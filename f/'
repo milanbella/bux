@@ -23,9 +23,11 @@
 		<form id="register-form" class="container-register-form">
 			<h4 class="register-form-header">Pick account where to send Bux</h4>
 			<div class="register-form-row">
-                <label for="username" class="warning-label typing-text">We never ask you for password</label>
-                <input type="text" id="username" name="username" placeholder="Roblox username" required class="username-input">
-                <div class="rgister-button-container"><button type="submit"> Submit </button></div>
+                <div>
+                    <label for="username" class="warning-label">We never ask you for password</label>
+                    <input typ   text" id="username" name="username" placeholder="Roblox username" required>
+                </div>
+                <button type="submit"> Submit </button>
 			</div>
 			<div class="h-captcha" data-sitekey="9c16973a-002e-43fa-9dd0-fd4899b64e68"></div>
 		</form>
@@ -41,9 +43,7 @@
 
 		<div id="referral-container" class="referral-container">
 			<span id="referral-link" class="referral-link">https://example.com/ref?code=ABC123</span>
-			<div>
-                <button id="referral-copy-btn">Copy</button>
-            </div>
+			<button id="referral-copy-btn" ">Copy</button>
 		</div>
 
 	</main>

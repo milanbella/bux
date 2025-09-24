@@ -20,7 +20,7 @@ async function callGetLastRedeemers(count = 10): Promise<Response<LastRedeemersR
 
 // ----- Rendering -----
 function renderLoading(container: HTMLElement) {
-	container.innerHTML = `<div class="last-redeemers-loading">Loading last redeemers ...</div>`;
+	container.innerHTML = `<div class="last-redeemers-loading">Loading last winners ...</div>`;
 }
 
 function renderError(container: HTMLElement, message: string) {
@@ -42,7 +42,7 @@ function renderList(container: HTMLElement, redeemers: LastRedeemerDto[]) {
 
 	container.innerHTML = `
     <div id="last-redeemers-widget" class="last-redeemers">
-        <h3 class="last-redeemers-title">Last Redeemers</h3>
+        <h3 class="last-redeemers-title">Last Winners</h3>
         <div class="last-redeemers-container">
             <div class="last-redeemers-list">
               ${items}

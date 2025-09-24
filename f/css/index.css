@@ -12,3 +12,27 @@
 	width: 100%;
 }
 
+.earn-bux-text-container {
+  margin-top: 15px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(
+    90deg, 
+    #ff4e50, 
+    #f9d423, 
+    #1fa2ff, 
+    #12d8fa, 
+    #a6ffcb
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
