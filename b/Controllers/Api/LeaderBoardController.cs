@@ -34,7 +34,7 @@ namespace Bux.Controllers.Api
             {
                 int userId = await sessionService.GetUserId(); // current user id
 
-                const int DEFAULT_LIMIT = 100;
+                const int DEFAULT_LIMIT = 30;
                 const int MAX_LIMIT = 1000;
                 int effectiveLimit = Math.Clamp(limit ?? DEFAULT_LIMIT, 1, MAX_LIMIT);
 

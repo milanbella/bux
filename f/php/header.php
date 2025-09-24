@@ -1,6 +1,6 @@
         <nav class="header-container">
             <div class="header-left">
-            <img src="img/r_dollar_70px.png"></img>
+            <a href="index.html"><img src="img/r_dollar_70px.png"></img></a>
             <a href="index.html"><i class="fa-solid fa-house"></i> <span class="menu-item"> Home </span> </a>
             <a href="leaderboard.html"><i class="fa-solid fa-trophy"></i> <span class="menu-item"> Leaderboard </span> </a>
             <!--<a href="offers.html"><i class="fa-solid fa-gift"></i> <span class="menu-item"> Offers </span> </a>-->
