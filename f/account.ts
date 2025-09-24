@@ -61,11 +61,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (result.response === null) {
             showMessage('error', result.message);
         } else {
+            /*
             setRoBloxUser(result.response.username);
             updateTotalBux();
             showMessage('info', `Your roblox name is now: ${result.response.username}`)
             document.getElementById('register-form')?.remove();
             updateReferralCount();
+            */
+            window.location.href = "/index.html";
         }
     });
 

@@ -41,6 +41,8 @@ function set401() {
 	if (window.location.pathname === "/account.html") {
 		return;
 	}
+    window.location.href = "/account.html";
+    /*
 	const main = document.querySelector("main");
 
 	if (!main) {
@@ -63,6 +65,7 @@ function set401() {
 
 	// append the anchor to <main>
 	main.appendChild(container);
+    */
 }
 
 export async function callGetData<T>(url: string): Promise<Response<T>> {

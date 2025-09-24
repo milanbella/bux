@@ -17,18 +17,6 @@
   --silver-bg:#f5f7fa;
   --bronze-bg:#ffefe2;
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --surface:#121417; --surface-2:#0f1310;
-    --border:#2a2e33; --border-2:#343a42;
-    --text:#e7eaee; --muted:#a6aeb9;
-    --shadow:0 16px 44px rgba(0,0,0,.55);
-
-    --gold-bg:color-mix(in srgb,#d4af37 18%, var(--surface));
-    --silver-bg:color-mix(in srgb,#c0c0c0 16%, var(--surface));
-    --bronze-bg:color-mix(in srgb,#cd7f32 16%, var(--surface));
-  }
-}
 
 /* page container */
 main{
