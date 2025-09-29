@@ -14,4 +14,5 @@ EOF
 ssh root@usrv  'rm -rf /var/www/html_earnobux'
 ssh root@usrv  'cd /var/www && tar xvf html_earnobux.tar.gz &&  rm html_earnobux.tar.gz'
 ssh root@usrv  'chown -R www-data:www-data /var/www/html_earnobux'
+ssh root@usrv  'cd /var/www && touch html_earnobux/ && cd html_earnobux/ && find . -exec touch {} +'
 echo "deploy finished ok"
