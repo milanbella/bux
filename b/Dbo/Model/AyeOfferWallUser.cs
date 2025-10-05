@@ -1,5 +1,4 @@
 ﻿#pragma warning disable 8632
-using Bux.Dbo.Model;
 
 namespace Bux.Dbo.Model
 {

@@ -28,6 +28,7 @@ namespace Bux.Dbo
         public DbSet<ClickGame> ClickGame => Set<ClickGame>();
         public DbSet<GuessGame> GuessGame => Set<GuessGame>();
         public DbSet<Avatar> Avatar => Set<Avatar>();
+        public DbSet<AyeOfferWallUser> AyeOfferWallUser => Set<AyeOfferWallUser>();
 
 
 
@@ -90,6 +91,11 @@ namespace Bux.Dbo
             // Avatar
             modelBuilder.Entity<Avatar>().HasKey(e => e.Id);
             modelBuilder.Entity<Avatar>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+
+            // AyeOfferWallUser
+            modelBuilder.Entity<AyeOfferWallUser>().HasKey(e => e.Id);
+            modelBuilder.Entity<AyeOfferWallUser>().HasIndex(e => e.AyeUserId).IsUnique(true);
+            modelBuilder.Entity<AyeOfferWallUser>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
 			Bux.Seed.Users.Seed(modelBuilder, Configuration, Environment);
 
