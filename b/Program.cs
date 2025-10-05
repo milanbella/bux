@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.DataProtection;
+﻿using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Bux.Dbo;
 using MySqlConnector;
@@ -167,6 +167,7 @@ builder.Services.AddScoped<Bux.Auth.ApiKeyService>(provider =>
 });
 
 
+builder.Services.AddScoped<Bux.Aye.AyeService>();
 builder.Services.AddScoped<RedeemService>(provider =>
 {
     Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
@@ -219,3 +220,4 @@ app.MapControllers();
 
 
 app.Run();
+
