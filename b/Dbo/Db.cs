@@ -29,6 +29,7 @@ namespace Bux.Dbo
         public DbSet<GuessGame> GuessGame => Set<GuessGame>();
         public DbSet<Avatar> Avatar => Set<Avatar>();
         public DbSet<AyeOfferWallUser> AyeOfferWallUser => Set<AyeOfferWallUser>();
+        public DbSet<AyeOfferWallCallback> AyeOfferWallCallback => Set<AyeOfferWallCallback>();
 
 
 
@@ -97,8 +98,15 @@ namespace Bux.Dbo
             modelBuilder.Entity<AyeOfferWallUser>().HasIndex(e => e.AyeUserId).IsUnique(true);
             modelBuilder.Entity<AyeOfferWallUser>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
+            // AyeOfferWallCallback
+            modelBuilder.Entity<AyeOfferWallCallback>().HasKey(e => e.Id);
+            modelBuilder.Entity<AyeOfferWallCallback>().HasIndex(e => e.TransactionId).IsUnique(true);
+            modelBuilder.Entity<AyeOfferWallCallback>().HasIndex(e => e.ReceivedAt);
+
 			Bux.Seed.Users.Seed(modelBuilder, Configuration, Environment);
 
         }
     }
 }
+
+
