@@ -8,6 +8,8 @@
 
 	<link rel="stylesheet" href="css/account.css">
 	<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
+    <link rel="stylesheet" href="css/php/index_html/testimonials.css">
 </head>
 
 <body>
@@ -21,7 +23,7 @@
 
 		<!--<form id="register-form" class="container-register-form" action="" method="POST">-->
 		<form id="register-form" class="container-register-form">
-			<h4 class="register-form-header">Pick account where to send Bux</h4>
+			<h4 class="register-form-header">Pick account where to send R$</h4>
 			<div class="register-form-row">
                 <label for="username" class="warning-label typing-text">We never ask you for password</label>
                 <input type="text" id="username" name="username" placeholder="Roblox username" required class="username-input">
@@ -53,6 +55,9 @@
 		include 'php/footer.php'
 		?>
 	</footer>
+    <?php
+    include 'php/index_html/testimonials.php'
+    ?>
 	<script type="module" src="account.js"></script>
 </body>
 

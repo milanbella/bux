@@ -17,7 +17,7 @@
     </header>
 
     <main>
-        <h3>Leaderboard</h3>
+        <h3>Leaderboard</h5>
         <div id="my-place" class="my-place"></div>
         <table id="leaderboard-table" class="leaderboard-table">
             <thead>

@@ -8,11 +8,11 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Completed a few surveys and redeemed for R$. Transfer to my Roblox balance was smooth.
+        Completed a few surveys and redeemed R$. Got R$ into pending and got them after few days. I can verify Earnobux is legit.
       </p>
       <div class="t-foot">
-        <span class="t-badge">Survey Payout</span>
-        <span>via provider</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -20,13 +20,13 @@
       <div class="t-head">
         <div class="t-username">BEAUTYxISxTHE_BEAST</div>
       </div>
-        <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <div class="t-stars">&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Hit the daily goal, cashed out, and used it for Roblox. No issues at all.
+         Great, I just needed to focus on the questions in the surveys to get my R$ redeemed, other than that perfect.
       </p>
       <div class="t-foot">
-        <span class="t-badge">Instant Code</span>
-        <span>worked first try</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -34,13 +34,13 @@
       <div class="t-head">
         <div class="t-username">Bonus_Pretzel</div>
       </div>
-        <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <div class="t-stars">&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Surveys credited fast. Converted to R$ and spent it in-game the same day.
+        finally I do not have to beg for R$ from my parents
       </p>
       <div class="t-foot">
-        <span class="t-badge">Credited</span>
-        <span>same day</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -50,11 +50,11 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Legit45finished offers, redeemed, and the R$ showed up on my Roblox account.
+        THANKS FOR HELPING ME TO BUY MY DREAM PET IN GAG!!!!
       </p>
       <div class="t-foot">
         <span class="t-badge">Verified</span>
-        <span>payout received</span>
+        <span></span>
       </div>
     </article>
 
@@ -64,11 +64,11 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Did a mix of short surveys. Withdrawal went through and I used it for avatar items.
+        Did a mix of short surveys. Withdrawal went through instantly I used it for items on my avatar.
       </p>
       <div class="t-foot">
-        <span class="t-badge">Short Surveys</span>
-        <span>easy wins</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -78,11 +78,11 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Quick cashout45converted to R$ and bought a game pass right away.
+        LOVE THIS SITE!!
       </p>
       <div class="t-foot">
-        <span class="t-badge">Fast Cashout</span>
-        <span>no delays</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -90,13 +90,12 @@
       <div class="t-head">
         <div class="t-username">Soorbeet</div>
       </div>
-        <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <div class="t-stars">&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Credited correctly and transferred to Roblox without any extra steps.
-      </p>
+        Only bad thing is that the provider do not always accepts my survey, but I understand the site cannot do anything about it.
       <div class="t-foot">
-        <span class="t-badge">Smooth</span>
-        <span>zero hassle</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -106,11 +105,11 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Reliable payouts. I used the R$ for accessories45worked perfectly.
+        Finally a site that is legit and does not scam you out of your info, they only want username to know where to send Bobux.
       </p>
       <div class="t-foot">
-        <span class="t-badge">Reliable</span>
-        <span>payout confirmed</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -120,11 +119,11 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        I like the short tasks. Redeemed to R$ and spent it the same evening.
+        I like the short tasks. Redeemed to R$ and spent it right after it went through pending.
       </p>
       <div class="t-foot">
-        <span class="t-badge">Short Tasks</span>
-        <span>good rates</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -132,13 +131,13 @@
       <div class="t-head">
         <div class="t-username">lalarealdelulu</div>
       </div>
-        <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <div class="t-stars">&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Transfer to Roblox was straightforward. No hidden steps45nice.
+        works but it takes time to earn them!! (but i guess that proverb that nothing is free in life is true)
       </p>
       <div class="t-foot">
-        <span class="t-badge">Straightforward</span>
-        <span>clear flow</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -148,11 +147,11 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Offers credited and I redeemed to R$. Used it for premium features.
+        Perfect! BOBUX BOBUX BOBUX
       </p>
       <div class="t-foot">
-        <span class="t-badge">Credited</span>
-        <span>premium used</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
@@ -162,17 +161,17 @@
       </div>
         <div class="t-stars">&starf;&starf;&starf;&starf;&starf;</div>
       <p class="t-quote">
-        Worked as described45completed surveys, redeemed, and the R$ appeared in my Roblox.
+        Was scared at first but after I tried with my alt I can be sure you are legit EarnObux.
       </p>
       <div class="t-foot">
-        <span class="t-badge">As Described</span>
-        <span>happy user</span>
+        <span class="t-badge">Verified</span>
+        <span></span>
       </div>
     </article>
 
   </div>
 
   <p class="t-disclaimer">
-    Testimonials are user-submitted experiences.  Not affiliated with or endorsed by Roblox. 
+    Testimonials are user-submitted from our Discord server. 
   </p>
 </div>
