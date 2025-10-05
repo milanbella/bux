@@ -1,5 +1,5 @@
 :root {
-  --top-buttons-left-tile-size: 88px;     
+  --top-buttons-left-tile-size: 88px;
   --top-buttons-left-tile-radius: 14px;
   --top-buttons-left-gap: 22px;
   --top-buttons-left-shadow: 0 6px 18px rgba(0,0,0,.25);
@@ -7,11 +7,10 @@
 }
 
 .top-buttons-left {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(var(--top-buttons-left-tile-size), 1fr));
-    gap: var(--top-buttons-left-gap);
+    display: flex;
     align-items: center;
     justify-content: start;
+	gap: var(--top-buttons-left-gap);
     padding: 32px;
     max-width: 960px;
 }
@@ -95,6 +94,14 @@
 
 .top-buttons-left .tile.twitter {
     background: #1DA1F2;
+}
+
+.top-buttons-left .tile.ayet {
+    background: #1e88e5;
+}
+
+.top-buttons-left .tile.ayet .logo-text {
+    color: #FFBF00;
 }
 
 .top-buttons-left .tile.bitlabs {

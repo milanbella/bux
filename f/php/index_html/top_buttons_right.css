@@ -7,11 +7,10 @@
 }
 
 .top-buttons-right {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(var(--top-buttons-right-tile-size), 1fr));
-    gap: var(--top-buttons-right-gap);
+    display: flex;
     align-items: center;
     justify-content: start;
+    gap: var(--top-buttons-right-gap);
     padding: 32px;
     max-width: 960px;
 }

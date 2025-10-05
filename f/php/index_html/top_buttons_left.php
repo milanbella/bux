@@ -40,6 +40,11 @@
     </a>
 	-->
 
+    <!-- Ayet Studios -->
+    <a class="tile ayet" href="https://www.ayetstudios.com/" target="_blank" rel="noopener noreferrer">
+        <div class="logo-text">Ayet Studios</div>
+    </a>
+
     <!-- BitLabs -->
     <a class="tile bitlabs" href="#">
         <div class="logo-text">BitLabs</div>
@@ -61,3 +66,4 @@
     </a>
 
 </div>
+
