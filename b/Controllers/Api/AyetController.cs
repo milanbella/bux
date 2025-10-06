@@ -28,5 +28,11 @@ namespace bux.Controllers.Api
             var link = await ayetService.GetOfferWallAddSlotLink(userId);
             return Ok(new GetOfferWallAddSlotLinkResponse ( link: link ));
         }
+
+        [HttpGet("get-conversions")]
+        public async Task<ActionResult<ConversionsListResponse>> GetConversions()
+		{
+            var userId = await sessionService.GetUserId();
+		}
     }
 }

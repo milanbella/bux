@@ -135,8 +135,27 @@ namespace Bux.Ayet
         }
 
         public async Task<List<AyetOfferWallCallback>> GetConversions(int userId)
-		{
-		}
+        {
+            var ayetUserId = await db.AyetUser
+                .Where(u => u.UserId == userId)
+                .Select(u => u.AyetUserId)
+                .FirstOrDefaultAsync();
+
+            var query = db.AyeOfferWallCallback.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(ayetUserId))
+            {
+                query = query.Where(c =>  c.ExternalIdentifier == ayetUserId);
+            }
+            else
+            {
+                // return empty list
+                return new List<AyetOfferWallCallback>(); 
+            }
+
+            return await query
+                .OrderByDescending(c => c.ReceivedAt)
+                .ToListAsync();
+        }
     }
 }
-
