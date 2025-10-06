@@ -1,19 +1,19 @@
 using System;
 using System.Globalization;
-using Bux.Aye;
+using Bux.Ayet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace bux.Controllers.Aye
+namespace Bux.Conversion
 {
     [Route("conversion/ayet")]
-    public class AyeController : Controller
+    public class AyetConversionController : Controller
     {
-        private readonly AyeService ayeService;
+        private readonly AyetService ayeService;
 
-        public AyeController(AyeService ayeService)
+        public AyetConversionController(AyetService ayetService)
         {
-            this.ayeService = ayeService;
+            this.ayeService = ayetService;
         }
 
         [HttpGet("")]

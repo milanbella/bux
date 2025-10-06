@@ -28,8 +28,8 @@ namespace Bux.Dbo
         public DbSet<ClickGame> ClickGame => Set<ClickGame>();
         public DbSet<GuessGame> GuessGame => Set<GuessGame>();
         public DbSet<Avatar> Avatar => Set<Avatar>();
-        public DbSet<AyeOfferWallUser> AyeOfferWallUser => Set<AyeOfferWallUser>();
-        public DbSet<AyeOfferWallCallback> AyeOfferWallCallback => Set<AyeOfferWallCallback>();
+        public DbSet<AyetUser> AyetUser => Set<AyetUser>();
+        public DbSet<AyetOfferWallCallback> AyeOfferWallCallback => Set<AyetOfferWallCallback>();
 
 
 
@@ -94,14 +94,14 @@ namespace Bux.Dbo
             modelBuilder.Entity<Avatar>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
             // AyeOfferWallUser
-            modelBuilder.Entity<AyeOfferWallUser>().HasKey(e => e.Id);
-            modelBuilder.Entity<AyeOfferWallUser>().HasIndex(e => e.AyeUserId).IsUnique(true);
-            modelBuilder.Entity<AyeOfferWallUser>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+            modelBuilder.Entity<AyetUser>().HasKey(e => e.Id);
+            modelBuilder.Entity<AyetUser>().HasIndex(e => e.AyeUserId).IsUnique(true);
+            modelBuilder.Entity<AyetUser>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
             // AyeOfferWallCallback
-            modelBuilder.Entity<AyeOfferWallCallback>().HasKey(e => e.Id);
-            modelBuilder.Entity<AyeOfferWallCallback>().HasIndex(e => e.TransactionId).IsUnique(true);
-            modelBuilder.Entity<AyeOfferWallCallback>().HasIndex(e => e.ReceivedAt);
+            modelBuilder.Entity<AyetOfferWallCallback>().HasKey(e => e.Id);
+            modelBuilder.Entity<AyetOfferWallCallback>().HasIndex(e => e.TransactionId).IsUnique(true);
+            modelBuilder.Entity<AyetOfferWallCallback>().HasIndex(e => e.ReceivedAt);
 
 			Bux.Seed.Users.Seed(modelBuilder, Configuration, Environment);
 

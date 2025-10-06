@@ -1,18 +1,26 @@
+using Microsoft.EntityFrameworkCore;
 using Bux.Dbo;
 using Bux.Dbo.Model;
 using System;
 using System.Linq;
 using Serilog;
 
-namespace Bux.Aye
+namespace Bux.Ayet
 {
-    public class AyeService
+    public class AyetService
     {
-        public static string CLASS_NAME = typeof(AyeService).Name;
+        public static string CLASS_NAME = typeof(AyetService).Name;
 
         private Db db;
-        public AyeService(Db db)
+        private int addSlotId;
+
+        public AyetService(IConfiguration configuration, Db db)
         {
+            if (configuration["ayet_offerwall_addslot_id"] == null)
+            {
+                throw new Exception("missing configuration value: ayet_offerwall_addslot_id");
+            }
+            this.addSlotId = configuration.GetValue<int>("ayet_offerwall_addslot_id");
             this.db = db;
         }
 
@@ -35,7 +43,7 @@ namespace Bux.Aye
                 }
             }
 
-            var callback = new AyeOfferWallCallback
+            var callback = new AyetOfferWallCallback
             {
                 TransactionId = callbackData.TransactionId,
                 PayoutUsd = callbackData.PayoutUsd,
@@ -81,5 +89,49 @@ namespace Bux.Aye
 
 			return new ProcessOfferWallCallbackReturn(httpStatus, "ok"); 
 		}
+
+        public async Task<string> EnsureAyetUser(int userId)
+        {
+            const string METHOD_NAME = "EnsureAyetUser()";
+
+            // check if AyetUser table has a record with the given AyetUserId
+            var ayetUser = await db.AyetUser.FirstOrDefaultAsync(u => u.UserId == userId);
+            if (ayetUser != null)
+            {
+                return ayetUser.AyetUserId;
+            }
+
+            string ayetUserId = Guid.NewGuid().ToString("N");
+            int n = 0;
+            while (await db.AyetUser.AnyAsync(u => u.AyetUserId == ayetUserId))
+            {
+                ayetUserId = Guid.NewGuid().ToString("N");
+                ++n;
+                if (n > 10)
+                {
+                    Log.Error($"{CLASS_NAME}:{METHOD_NAME}: failed to generate unique AyetUserId after {n} attempts");
+                    throw new Exception("failed to generate unique AyetUserId");
+                }
+            }
+
+            ayetUser = new AyetUser
+            {
+                UserId = userId,
+                AyetUserId = ayetUserId
+            };
+            db.AyetUser.Add(ayetUser);
+
+            await db.SaveChangesAsync();
+
+            return ayetUser.AyetUserId;
+        }
+
+        public async Task<string> GetOfferWallAddSlotLink(int userId)
+        {
+            string ayetUserId = await EnsureAyetUser(userId);
+            string link = $"https://offerwall.ayet.io/offers?adSlot={addSlotId}&externalIdentifier={ayetUserId}";
+            return link;
+        }
     }
 }
+

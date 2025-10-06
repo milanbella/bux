@@ -1,4 +1,4 @@
-﻿namespace Bux.Aye
+﻿namespace Bux.Ayet
 {
     public class OfferWallCallbackData
     {

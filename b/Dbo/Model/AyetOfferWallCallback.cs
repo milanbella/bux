@@ -3,7 +3,7 @@ using System;
 namespace Bux.Dbo.Model
 {
     [System.Serializable]
-    public class AyeOfferWallCallback
+    public class AyetOfferWallCallback
     {
         public int Id { get; set; }
         public System.DateTime ReceivedAt { get; set; }

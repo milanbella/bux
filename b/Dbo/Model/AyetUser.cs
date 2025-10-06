@@ -1,0 +1,13 @@
+﻿#pragma warning disable 8632
+
+namespace Bux.Dbo.Model
+{
+    [System.Serializable]
+    public class AyetUser
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public User? User { get; set; }
+        public string? AyetUserId { get; set; }
+    }
+}
