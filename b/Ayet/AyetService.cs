@@ -4,6 +4,7 @@ using Bux.Dbo.Model;
 using System;
 using System.Linq;
 using Serilog;
+using Bux.Dbo.Model;
 
 namespace Bux.Ayet
 {
@@ -132,6 +133,10 @@ namespace Bux.Ayet
             string link = $"https://offerwall.ayet.io/offers?adSlot={addSlotId}&externalIdentifier={ayetUserId}";
             return link;
         }
+
+        public async Task<List<AyetOfferWallCallback>> GetConversions(int userId)
+		{
+		}
     }
 }
 
