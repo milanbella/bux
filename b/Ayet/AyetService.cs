@@ -28,7 +28,7 @@ namespace Bux.Ayet
             {
                 throw new Exception("missing configuration value: ayet_offerwall_is_test");
             }
-            this.isTestMode = configuration.GetValue<bool>("ayet_offerwall_addslot_id");
+            this.isTestMode = configuration.GetValue<bool>("ayet_offerwall_is_test");
 
             if (configuration["ayet_offerwall_test_user"] == null)
             {
@@ -135,7 +135,7 @@ namespace Bux.Ayet
             }
             else
             {
-                ayetUserId = "test-" + testUserName;
+                ayetUserId = testUserName;
             }
 
             ayetUser = new AyetUser
