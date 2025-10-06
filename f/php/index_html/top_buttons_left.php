@@ -2,7 +2,7 @@
 
 
     <!-- Ayet Studios -->
-    <a class="tile ayet" href="https://www.ayetstudios.com/" target="_blank" rel="noopener noreferrer">
+    <a id="offer-wall-link-ayet" class="tile ayet" href="https://www.ayetstudios.com/" target="_blank" rel="noopener noreferrer">
         <div class="logo-text">Ayet Studios</div>
     </a>
 
