@@ -95,7 +95,7 @@ namespace Bux.Dbo
 
             // AyeOfferWallUser
             modelBuilder.Entity<AyetUser>().HasKey(e => e.Id);
-            modelBuilder.Entity<AyetUser>().HasIndex(e => e.AyeUserId).IsUnique(true);
+            modelBuilder.Entity<AyetUser>().HasIndex(e => e.AyetUserId).IsUnique(true);
             modelBuilder.Entity<AyetUser>().HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
 
             // AyeOfferWallCallback

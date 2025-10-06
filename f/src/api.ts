@@ -30,6 +30,10 @@ export interface GetReferralsCountResponse {
     referralsCount: number;
 }
 
+export interface GetOfferWallAddSlotLinkResponse {
+    link: string;
+}
+
 export interface Response<T> {
     response: T | null;
     status: number | null;
@@ -187,5 +191,10 @@ export async function callGetAavatar64(): Promise<Response<GetAvatar64Response>>
 
 export async function callGetReferralsCount(): Promise<Response<GetReferralsCountResponse>> {
     let response = await callGetData<GetReferralsCountResponse>('b/api/user/get-referrals-count');
+    return response;
+}
+
+export async function callGetOfferWallAddSlotLink(): Promise<Response<GetOfferWallAddSlotLinkResponse>> {
+    let response = await callGetData<GetOfferWallAddSlotLinkResponse>('b/api/ayet/get-offerwall-add-slot-link');
     return response;
 }

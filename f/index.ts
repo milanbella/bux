@@ -1,35 +1,67 @@
-//import { callPostData } from './src/api.js'
+import { callGetOfferWallAddSlotLink } from './src/api.js';
 
-//const FILE = "index.ts"
+const FILE = 'index.ts';
 
-/*
-async function handleDiscordClick() 
-{
-    const FUNCTION = "handleDiscordClick()"
-    let discordWasClicked: boolean = false;
+document.addEventListener('DOMContentLoaded', () => {
+    const ayetLink = document.getElementById('offer-wall-link-ayet') as HTMLAnchorElement | null;
+    const surveyFrame = document.getElementById('survey-frame') as HTMLIFrameElement | null;
 
-    async function callDiscordClick(event: MouseEvent): Promise<void> {
-         event.preventDefault(); // stop default "#" navigation
+    if (!ayetLink) {
+        console.error(`${FILE}: missing element: offer-wall-link-ayet`);
+        return;
+    }
 
-        if (!discordWasClicked) {
-            let response = await callPostData('b/api1/discord-click', '{}');
-            console.log(`${FILE}:${FUNCTION}: response:`);
-            console.dir(response);
-        } else {
-            console.log(`${FILE}:${FUNCTION}: noop:`);
+    if (!surveyFrame) {
+        console.error(`${FILE}: missing element: survey-frame`);
+        return;
+    }
+
+    const ayetAnchor = ayetLink as HTMLAnchorElement;
+    const surveyIframe = surveyFrame as HTMLIFrameElement;
+
+    const fallbackHref = ayetAnchor.getAttribute('href') ?? '';
+    let cachedLink: string | null = null;
+    let loading = false;
+
+    async function loadOfferwallLink(): Promise<string | null> {
+        if (cachedLink) {
+            return cachedLink;
         }
-        window.location.href = "https://discord.gg/ZFCMVTtgcJ";
+
+        if (loading) {
+            return null;
+        }
+
+        loading = true;
+        try {
+            const response = await callGetOfferWallAddSlotLink();
+            if (response.response && response.response.link) {
+                cachedLink = response.response.link;
+                ayetAnchor.href = cachedLink;
+                return cachedLink;
+            }
+
+            console.error(`${FILE}: failed to get offerwall link`, response.error || response.message);
+            return null;
+        } catch (err) {
+            console.error(`${FILE}: exception while getting offerwall link`, err);
+            return null;
+        } finally {
+            loading = false;
+        }
     }
 
-    let discordBtn = document.getElementById('top-buttons-discord-btn');
-    if (discordBtn) {
-        discordBtn.addEventListener('click', callDiscordClick)
-    } else {
-        console.error(`${FILE}:${FUNCTION}: no element: discord-btn:`);
-    }
-}
+    ayetAnchor.addEventListener('click', async (event) => {
+        event.preventDefault();
 
-document.addEventListener("DOMContentLoaded", function () {
-    handleDiscordClick();
+        const link = await loadOfferwallLink();
+        if (link) {
+            surveyIframe.src = link;
+            return;
+        }
+
+        if (fallbackHref) {
+            window.open(fallbackHref, '_blank', 'noopener,noreferrer');
+        }
+    });
 });
-*/

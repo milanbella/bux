@@ -167,7 +167,11 @@ builder.Services.AddScoped<Bux.Auth.ApiKeyService>(provider =>
 });
 
 
-builder.Services.AddScoped<Bux.Aye.AyeService>();
+builder.Services.AddScoped<Bux.Ayet.AyetService>(provider =>
+{
+    Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
+    return new Bux.Ayet.AyetService(builder.Configuration, db);
+});
 builder.Services.AddScoped<RedeemService>(provider =>
 {
     Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();

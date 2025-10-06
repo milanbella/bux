@@ -8,6 +8,6 @@ namespace Bux.Dbo.Model
         public int Id { get; set; }
         public int UserId { get; set; }
         public User? User { get; set; }
-        public string? AyetUserId { get; set; }
+        public string AyetUserId { get; set; }
     }
 }
