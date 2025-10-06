@@ -40,6 +40,10 @@ namespace Bux.Middleware
             {
                 await _next(context);
             }
+            else if (path != null && path.StartsWith("/conversion"))
+            {
+                await _next(context);
+            }
             else if (path != null && path.StartsWith("/api"))
             {
                 var user = await sessionService.GetLoggedInUser();

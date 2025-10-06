@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Bux.Dbo;
-using Bux.Dbo.Model;
 using System;
 using System.Linq;
 using Serilog;
@@ -14,6 +13,8 @@ namespace Bux.Ayet
 
         private Db db;
         private int addSlotId;
+        private bool isTestMode;
+        private string testUserName;
 
         public AyetService(IConfiguration configuration, Db db)
         {
@@ -22,6 +23,19 @@ namespace Bux.Ayet
                 throw new Exception("missing configuration value: ayet_offerwall_addslot_id");
             }
             this.addSlotId = configuration.GetValue<int>("ayet_offerwall_addslot_id");
+
+            if (configuration["ayet_offerwall_is_test"] == null)
+            {
+                throw new Exception("missing configuration value: ayet_offerwall_is_test");
+            }
+            this.isTestMode = configuration.GetValue<bool>("ayet_offerwall_addslot_id");
+
+            if (configuration["ayet_offerwall_test_user"] == null)
+            {
+                throw new Exception("missing configuration value: ayet_offerwall_test_user");
+            }
+            this.testUserName = configuration.GetValue<string>("ayet_offerwall_test_user");
+
             this.db = db;
         }
 
@@ -102,17 +116,26 @@ namespace Bux.Ayet
                 return ayetUser.AyetUserId;
             }
 
-            string ayetUserId = Guid.NewGuid().ToString("N");
-            int n = 0;
-            while (await db.AyetUser.AnyAsync(u => u.AyetUserId == ayetUserId))
+            string ayetUserId;
+
+            if (!isTestMode)
             {
                 ayetUserId = Guid.NewGuid().ToString("N");
-                ++n;
-                if (n > 10)
+                int n = 0;
+                while (await db.AyetUser.AnyAsync(u => u.AyetUserId == ayetUserId))
                 {
-                    Log.Error($"{CLASS_NAME}:{METHOD_NAME}: failed to generate unique AyetUserId after {n} attempts");
-                    throw new Exception("failed to generate unique AyetUserId");
+                    ayetUserId = Guid.NewGuid().ToString("N");
+                    ++n;
+                    if (n > 10)
+                    {
+                        Log.Error($"{CLASS_NAME}:{METHOD_NAME}: failed to generate unique AyetUserId after {n} attempts");
+                        throw new Exception("failed to generate unique AyetUserId");
+                    }
                 }
+            }
+            else
+            {
+                ayetUserId = "test-" + testUserName;
             }
 
             ayetUser = new AyetUser

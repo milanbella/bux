@@ -2,6 +2,7 @@
 using Bux.Ayet;
 using Bux.Sessionn;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace bux.Controllers.Api
 {
@@ -33,6 +34,30 @@ namespace bux.Controllers.Api
         public async Task<ActionResult<ConversionsListResponse>> GetConversions()
 		{
             var userId = await sessionService.GetUserId();
+
+            var conversions = await ayetService.GetConversions(userId);
+
+            var response = new ConversionsListResponse(
+                conversions
+                    .Select(c => new ConversionsListItem(
+                        c.ReceivedAt,
+                        c.TransactionId,
+                        c.PayoutUsd,
+                        c.CurrencyAmount,
+                        c.CurrencyIdentifier,
+                        c.CurrencyConversionRate,
+                        c.UserId,
+                        c.ExternalIdentifier,
+                        c.PlacementIdentifier,
+                        c.AdslotId,
+                        c.OfferId,
+                        c.OfferName,
+                        c.IsChargeback,
+                        c.ChargebackReason,
+                        c.ChargebackDate))
+                    .ToList());
+
+            return Ok(response);
 		}
     }
 }
