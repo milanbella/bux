@@ -18,6 +18,7 @@
 
     <main>
         <h3>Leaderboard</h5>
+        <!-- temporarily disabled
         <div id="my-place" class="my-place"></div>
         <table id="leaderboard-table" class="leaderboard-table">
             <thead>
@@ -34,6 +35,7 @@
                 </tr>
             </tbody>
         </table>
+        -->
     </main>
 
     <footer>

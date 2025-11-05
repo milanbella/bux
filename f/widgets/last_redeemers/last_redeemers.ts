@@ -91,8 +91,10 @@ export async function mountLastRedeemers(containerId = 'last-redeemers', count =
 // Auto-mount if the container exists
 document.addEventListener('DOMContentLoaded', () => {
 	const el = document.getElementById('last-redeemers');
-	if (el) {
-		void mountLastRedeemers('last-redeemers');
-	}
+    if (false) { // temporarily disabled
+        if (el) {
+            void mountLastRedeemers('last-redeemers');
+        }
+    }
 });
 

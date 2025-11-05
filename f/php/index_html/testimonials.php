@@ -1,5 +1,7 @@
 <div class="testimonials">
-  <h2>What players say</h2>
+  <h2>What players say ...</h2>
+
+  <!-- tenporarily disabled
   <div class="t-grid">
 
     <article class="t-card">
@@ -170,6 +172,7 @@
     </article>
 
   </div>
+  -->
 
   <p class="t-disclaimer">
     Testimonials are user-submitted from our Discord server. 
