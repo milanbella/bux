@@ -172,6 +172,11 @@ builder.Services.AddScoped<Bux.Ayet.AyetService>(provider =>
     Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
     return new Bux.Ayet.AyetService(builder.Configuration, db);
 });
+builder.Services.AddScoped<Bux.Cpx.CpxService>(provider =>
+{
+    Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
+    return new Bux.Cpx.CpxService(db);
+});
 builder.Services.AddScoped<RedeemService>(provider =>
 {
     Bux.Dbo.Db db = provider.GetService<Bux.Dbo.Db>();
@@ -224,4 +229,3 @@ app.MapControllers();
 
 
 app.Run();
-

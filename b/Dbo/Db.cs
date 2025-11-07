@@ -30,6 +30,7 @@ namespace Bux.Dbo
         public DbSet<Avatar> Avatar => Set<Avatar>();
         public DbSet<AyetUser> AyetUser => Set<AyetUser>();
         public DbSet<AyetOfferWallCallback> AyeOfferWallCallback => Set<AyetOfferWallCallback>();
+        public DbSet<CpxOfferWallCallback> CpxOfferWallCallback => Set<CpxOfferWallCallback>();
 
 
 
@@ -103,10 +104,14 @@ namespace Bux.Dbo
             modelBuilder.Entity<AyetOfferWallCallback>().HasIndex(e => e.TransactionId).IsUnique(true);
             modelBuilder.Entity<AyetOfferWallCallback>().HasIndex(e => e.ReceivedAt);
 
+            // CpxOfferWallCallback
+            modelBuilder.Entity<CpxOfferWallCallback>().HasKey(e => e.Id);
+            modelBuilder.Entity<CpxOfferWallCallback>().HasIndex(e => e.TransactionId).IsUnique(true);
+            modelBuilder.Entity<CpxOfferWallCallback>().HasIndex(e => e.ReceivedAt);
+
 			Bux.Seed.Users.Seed(modelBuilder, Configuration, Environment);
 
         }
     }
 }
-
 
